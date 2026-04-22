@@ -1,5 +1,6 @@
 import pygame
 import sys
+from game import Game
 from settings import Settings
 
 def main() -> None:
@@ -10,11 +11,8 @@ def main() -> None:
     pygame.init()
     pygame.display.set_caption(Settings.TITLE)
     
-    print("Pygame initialized successfully!")
-    print(f"Ready to open window at resolution: {Settings.WIDTH}x{Settings.HEIGHT}")
-    
-    #app: Game = Game()
-    #app.run()
+    app: Game = Game()
+    app.run()
 
     pygame.quit()
     sys.exit()
