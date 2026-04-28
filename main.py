@@ -5,7 +5,6 @@ from settings import Settings
 
 def main() -> None:
     """
-    The main entry point for the application. 
     Initializes Pygame, sets up the window, and starts the main game engine.
     """
     pygame.init()
