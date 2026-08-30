@@ -90,7 +90,9 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "1": {
         "background": "assets/images/levels/2.png",
@@ -271,7 +273,17 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "coins": [
+            {
+                "x": 730,
+                "y": 480,
+                "radius": 30,
+                "is_negative": false
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "2": {
         "background": "assets/images/levels/3.png",
@@ -524,7 +536,16 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "coins": [
+            {
+                "x": 865,
+                "y": 740,
+                "is_negative": false
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "3": {
         "background": "assets/images/levels/4.png",
@@ -637,13 +658,13 @@
                 "x": 338,
                 "y": 0,
                 "width": 4,
-                "height": 420,
+                "height": 400,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
                 "x": 340,
-                "y": 418,
+                "y": 400,
                 "width": 100,
                 "height": 4,
                 "friction": 1.0,
@@ -653,7 +674,7 @@
                 "x": 438,
                 "y": 220,
                 "width": 4,
-                "height": 200,
+                "height": 180,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -793,7 +814,21 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "coins": [
+            {
+                "x": 380,
+                "y": 520,
+                "is_negative": false
+            },
+            {
+                "x": 410,
+                "y": 185,
+                "is_negative": false
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "4": {
         "background": "assets/images/levels/5.png",
@@ -840,15 +875,15 @@
             },
             {
                 "x": 378,
-                "y": 780,
+                "y": 794,
                 "width": 4,
-                "height": 120,
+                "height": 110,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
                 "x": 280,
-                "y": 778,
+                "y": 794,
                 "width": 100,
                 "height": 4,
                 "friction": 1.0,
@@ -856,9 +891,9 @@
             },
             {
                 "x": 278,
-                "y": 780,
+                "y": 794,
                 "width": 4,
-                "height": 40,
+                "height": 25,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -880,7 +915,7 @@
             },
             {
                 "x": 818,
-                "y": 780,
+                "y": 794,
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
@@ -888,7 +923,7 @@
             },
             {
                 "x": 820,
-                "y": 778,
+                "y": 794,
                 "width": 100,
                 "height": 4,
                 "friction": 1.0,
@@ -896,9 +931,9 @@
             },
             {
                 "x": 918,
-                "y": 780,
+                "y": 794,
                 "width": 4,
-                "height": 40,
+                "height": 25,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -927,15 +962,15 @@
                 "wind_push": 0.0
             },
             {
-                "x": 1100,
+                "x": 1080,
                 "y": 458,
-                "width": 80,
+                "width": 100,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 1098,
+                "x": 1078,
                 "y": 400,
                 "width": 4,
                 "height": 60,
@@ -943,9 +978,9 @@
                 "wind_push": 0.0
             },
             {
-                "x": 1100,
+                "x": 1080,
                 "y": 398,
-                "width": 80,
+                "width": 100,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -1122,13 +1157,13 @@
                 "x": 378,
                 "y": 0,
                 "width": 4,
-                "height": 40,
+                "height": 20,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
                 "x": 380,
-                "y": 38,
+                "y": 18,
                 "width": 440,
                 "height": 4,
                 "friction": 1.0,
@@ -1138,11 +1173,25 @@
                 "x": 818,
                 "y": 0,
                 "width": 4,
-                "height": 40,
+                "height": 20,
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "coins": [
+            {
+                "x": 140,
+                "y": 200,
+                "is_negative": false
+            },
+            {
+                "x": 60,
+                "y": 580,
+                "is_negative": true
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "5": {
         "background": "assets/images/levels/6.png",
@@ -1199,13 +1248,13 @@
                 "x": 338,
                 "y": 40,
                 "width": 4,
-                "height": 100,
+                "height": 75,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
                 "x": 340,
-                "y": 138,
+                "y": 115,
                 "width": 140,
                 "height": 4,
                 "friction": 1.0,
@@ -1215,7 +1264,7 @@
                 "x": 478,
                 "y": 0,
                 "width": 4,
-                "height": 140,
+                "height": 115,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -1317,25 +1366,25 @@
             },
             {
                 "x": 818,
-                "y": 820,
+                "y": 814,
                 "width": 4,
-                "height": 80,
+                "height": 200,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 380,
-                "y": 818,
-                "width": 440,
+                "x": 376,
+                "y": 814,
+                "width": 448,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 378,
-                "y": 820,
+                "x": 372,
+                "y": 814,
                 "width": 4,
-                "height": 80,
+                "height": 200,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -1357,15 +1406,15 @@
             },
             {
                 "x": 718,
-                "y": 200,
+                "y": 210,
                 "width": 4,
-                "height": 440,
+                "height": 430,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
                 "x": 720,
-                "y": 198,
+                "y": 210,
                 "width": 460,
                 "height": 4,
                 "friction": 1.0,
@@ -1388,38 +1437,52 @@
                 "wind_push": 0.0
             },
             {
-                "x": 820,
-                "y": 98,
-                "width": 240,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": 0.0
-            },
-            {
                 "x": 818,
-                "y": 60,
-                "width": 4,
-                "height": 40,
-                "friction": 1.0,
-                "wind_push": 0.0
-            },
-            {
-                "x": 720,
-                "y": 58,
-                "width": 100,
+                "y": 94,
+                "width": 244,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 718,
+                "x": 812,
+                "y": 50,
+                "width": 4,
+                "height": 50,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 730,
+                "y": 50,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 730,
                 "y": 0,
                 "width": 4,
-                "height": 60,
+                "height": 54,
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "coins": [
+            {
+                "x": 420,
+                "y": 250,
+                "is_negative": false
+            },
+            {
+                "x": 940,
+                "y": 170,
+                "is_negative": false
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "6": {
         "background": "assets/images/levels/7.png",
@@ -1746,7 +1809,16 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "coins": [
+            {
+                "x": 420,
+                "y": 580,
+                "is_negative": false
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "7": {
         "background": "assets/images/levels/8.png",
@@ -1969,7 +2041,17 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "coins": [
+            {
+                "x": 320,
+                "y": 320,
+                "radius": 18,
+                "is_negative": false
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "8": {
         "background": "assets/images/levels/9.png",
@@ -2344,7 +2426,31 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "coins": [
+            {
+                "x": 300,
+                "y": 500,
+                "is_negative": false
+            },
+            {
+                "x": 540,
+                "y": 500,
+                "is_negative": false
+            },
+            {
+                "x": 780,
+                "y": 500,
+                "is_negative": false
+            },
+            {
+                "x": 600,
+                "y": 200,
+                "is_negative": false
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "9": {
         "background": "assets/images/levels/10.png",
@@ -2407,7 +2513,7 @@
             },
             {
                 "x": 978,
-                "y": 820,
+                "y": 830,
                 "width": 4,
                 "height": 80,
                 "friction": 1.0,
@@ -2415,7 +2521,7 @@
             },
             {
                 "x": 980,
-                "y": 818,
+                "y": 830,
                 "width": 200,
                 "height": 4,
                 "friction": 1.0,
@@ -2634,12 +2740,14 @@
             {
                 "x1": 140,
                 "y1": 700,
-                "x2": 260,
+                "x2": 258,
                 "y2": 820,
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "10": {
         "background": "assets/images/levels/11.png",
@@ -3158,7 +3266,9 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "11": {
         "background": "assets/images/levels/12.png",
@@ -3437,7 +3547,9 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "12": {
         "background": "assets/images/levels/13.png",
@@ -3556,15 +3668,15 @@
             },
             {
                 "x": 1098,
-                "y": 80,
+                "y": 90,
                 "width": 4,
-                "height": 80,
+                "height": 70,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
                 "x": 1100,
-                "y": 78,
+                "y": 90,
                 "width": 80,
                 "height": 4,
                 "friction": 1.0,
@@ -3690,7 +3802,9 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "13": {
         "background": "assets/images/levels/14.png",
@@ -3731,13 +3845,13 @@
                 "x": 538,
                 "y": 500,
                 "width": 4,
-                "height": 160,
+                "height": 180,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
                 "x": 540,
-                "y": 658,
+                "y": 678,
                 "width": 160,
                 "height": 4,
                 "friction": 1.0,
@@ -3745,9 +3859,9 @@
             },
             {
                 "x": 698,
-                "y": 660,
+                "y": 680,
                 "width": 4,
-                "height": 100,
+                "height": 80,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -3865,7 +3979,9 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "14": {
         "background": "assets/images/levels/15.png",
@@ -3936,9 +4052,9 @@
             },
             {
                 "x": 18,
-                "y": 60,
+                "y": 55,
                 "width": 4,
-                "height": 140,
+                "height": 150,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -3951,25 +4067,25 @@
                 "wind_push": 0.0
             },
             {
-                "x": 840,
+                "x": 825,
                 "y": 598,
-                "width": 340,
+                "width": 355,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 838,
-                "y": 560,
+                "x": 825,
+                "y": 570,
                 "width": 4,
-                "height": 40,
+                "height": 30,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 840,
-                "y": 558,
-                "width": 120,
+                "x": 825,
+                "y": 568,
+                "width": 135,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -3978,7 +4094,7 @@
                 "x": 958,
                 "y": 480,
                 "width": 4,
-                "height": 80,
+                "height": 90,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -4048,9 +4164,9 @@
             },
             {
                 "x": 478,
-                "y": 160,
+                "y": 162,
                 "width": 4,
-                "height": 40,
+                "height": 36,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -4064,9 +4180,9 @@
             },
             {
                 "x": 578,
-                "y": 160,
+                "y": 162,
                 "width": 4,
-                "height": 40,
+                "height": 36,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -4099,7 +4215,7 @@
             {
                 "x1": 20,
                 "y1": 60,
-                "x2": 80,
+                "x2": 85,
                 "y2": 0,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -4136,7 +4252,9 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "15": {
         "background": "assets/images/levels/16.png",
@@ -4310,9 +4428,9 @@
                 "wind_push": 0.0
             },
             {
-                "x": 820,
+                "x": 815,
                 "y": 678,
-                "width": 60,
+                "width": 70,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -4342,9 +4460,9 @@
                 "wind_push": 0.0
             },
             {
-                "x": 1000,
+                "x": 995,
                 "y": 718,
-                "width": 60,
+                "width": 70,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -4385,13 +4503,13 @@
                 "x": 638,
                 "y": 420,
                 "width": 4,
-                "height": 160,
+                "height": 150,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
                 "x": 640,
-                "y": 578,
+                "y": 567,
                 "width": 60,
                 "height": 4,
                 "friction": 1.0,
@@ -4401,7 +4519,7 @@
                 "x": 698,
                 "y": 280,
                 "width": 4,
-                "height": 300,
+                "height": 290,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -4503,32 +4621,46 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "coins": [
+            {
+                "x": 850,
+                "y": 660,
+                "is_negative": false
+            },
+            {
+                "x": 110,
+                "y": 170,
+                "is_negative": true
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "16": {
         "background": "assets/images/levels/17.png",
         "platforms": [
             {
                 "x": 998,
-                "y": 780,
+                "y": 810,
                 "width": 4,
-                "height": 120,
+                "height": 90,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 1000,
-                "y": 778,
-                "width": 80,
+                "x": 995,
+                "y": 808,
+                "width": 90,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
                 "x": 1078,
-                "y": 780,
+                "y": 810,
                 "width": 4,
-                "height": 120,
+                "height": 90,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -4583,13 +4715,13 @@
             {
                 "x": 20,
                 "y": 678,
-                "width": 260,
+                "width": 280,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 278,
+                "x": 298,
                 "y": 640,
                 "width": 4,
                 "height": 40,
@@ -4599,7 +4731,7 @@
             {
                 "x": 20,
                 "y": 638,
-                "width": 260,
+                "width": 280,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -4720,13 +4852,13 @@
                 "x": 618,
                 "y": 280,
                 "width": 4,
-                "height": 220,
+                "height": 205,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
                 "x": 580,
-                "y": 498,
+                "y": 483,
                 "width": 40,
                 "height": 4,
                 "friction": 1.0,
@@ -4736,7 +4868,7 @@
                 "x": 578,
                 "y": 320,
                 "width": 4,
-                "height": 180,
+                "height": 165,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -4822,7 +4954,26 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "coins": [
+            {
+                "x": 170,
+                "y": 400,
+                "is_negative": false
+            },
+            {
+                "x": 620,
+                "y": 620,
+                "is_negative": false
+            },
+            {
+                "x": 220,
+                "y": 620,
+                "is_negative": false
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "17": {
         "background": "assets/images/levels/18.png",
@@ -5485,7 +5636,41 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "coins": [
+            {
+                "x": 850,
+                "y": 480,
+                "is_negative": false
+            },
+            {
+                "x": 980,
+                "y": 600,
+                "is_negative": false
+            },
+            {
+                "x": 1080,
+                "y": 340,
+                "is_negative": false
+            },
+            {
+                "x": 680,
+                "y": 670,
+                "is_negative": false
+            },
+            {
+                "x": 920,
+                "y": 720,
+                "is_negative": false
+            },
+            {
+                "x": 1150,
+                "y": 790,
+                "is_negative": false
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "18": {
         "background": "assets/images/levels/19.png",
@@ -5820,7 +6005,16 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "coins": [
+            {
+                "x": 1120,
+                "y": 400,
+                "is_negative": true
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "19": {
         "background": "assets/images/levels/20.png",
@@ -6091,7 +6285,21 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "coins": [
+            {
+                "x": 1050,
+                "y": 420,
+                "is_negative": false
+            },
+            {
+                "x": 160,
+                "y": 240,
+                "is_negative": true
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "20": {
         "background": "assets/images/levels/21.png",
@@ -6100,187 +6308,249 @@
                 "x": 18,
                 "y": 740,
                 "width": 4,
-                "height": 160
+                "height": 160,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 38,
                 "y": 320,
                 "width": 4,
-                "height": 400
+                "height": 400,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 260,
                 "y": 98,
                 "width": 160,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 418,
                 "y": 0,
                 "width": 4,
-                "height": 100
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 718,
                 "y": 0,
                 "width": 4,
-                "height": 40
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 720,
                 "y": 38,
                 "width": 100,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 818,
                 "y": 0,
                 "width": 4,
-                "height": 40
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 1138,
                 "y": 0,
                 "width": 4,
-                "height": 260
+                "height": 260,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 1080,
                 "y": 258,
                 "width": 60,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 1078,
                 "y": 260,
                 "width": 4,
-                "height": 160
+                "height": 160,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 1080,
                 "y": 418,
                 "width": 80,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 1158,
                 "y": 420,
                 "width": 4,
-                "height": 380
+                "height": 380,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 1178,
                 "y": 820,
                 "width": 4,
-                "height": 80
+                "height": 80,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 540,
                 "y": 838,
                 "width": 160,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 538,
                 "y": 720,
                 "width": 4,
-                "height": 120
+                "height": 120,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 540,
                 "y": 718,
                 "width": 60,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 598,
                 "y": 720,
                 "width": 4,
-                "height": 60
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 600,
                 "y": 778,
                 "width": 100,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 698,
                 "y": 780,
                 "width": 4,
-                "height": 60
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 200,
                 "y": 718,
                 "width": 120,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 198,
                 "y": 580,
                 "width": 4,
-                "height": 140
+                "height": 140,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 200,
                 "y": 578,
                 "width": 160,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 358,
                 "y": 580,
                 "width": 4,
-                "height": 40
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 320,
                 "y": 618,
                 "width": 40,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 318,
                 "y": 620,
                 "width": 4,
-                "height": 100
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 718,
                 "y": 460,
                 "width": 4,
-                "height": 40
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 720,
                 "y": 498,
                 "width": 40,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 758,
                 "y": 500,
                 "width": 4,
-                "height": 40
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 760,
                 "y": 538,
                 "width": 60,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 818,
                 "y": 460,
                 "width": 4,
-                "height": 80
+                "height": 80,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 720,
                 "y": 458,
                 "width": 100,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             }
         ],
         "ramps": [
@@ -6288,21 +6558,29 @@
                 "x1": 20,
                 "y1": 740,
                 "x2": 40,
-                "y2": 720
+                "y2": 720,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x1": 40,
                 "y1": 320,
                 "x2": 260,
-                "y2": 100
+                "y2": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x1": 1160,
                 "y1": 800,
                 "x2": 1180,
-                "y2": 820
+                "y2": 820,
+                "friction": 1.0,
+                "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "21": {
         "background": "assets/images/levels/22.png",
@@ -6311,193 +6589,257 @@
                 "x": 418,
                 "y": 840,
                 "width": 4,
-                "height": 60
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 340,
                 "y": 838,
                 "width": 80,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 338,
                 "y": 720,
                 "width": 4,
-                "height": 120
+                "height": 120,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 340,
                 "y": 718,
                 "width": 80,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 418,
                 "y": 700,
                 "width": 4,
-                "height": 20
+                "height": 20,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 420,
                 "y": 698,
                 "width": 40,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 338,
                 "y": 480,
                 "width": 4,
-                "height": 100
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 320,
                 "y": 478,
                 "width": 20,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 318,
                 "y": 480,
                 "width": 4,
-                "height": 100
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 180,
                 "y": 638,
                 "width": 80,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 20,
                 "y": 578,
                 "width": 100,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 18,
                 "y": 280,
                 "width": 4,
-                "height": 300
+                "height": 300,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 20,
                 "y": 278,
                 "width": 140,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 158,
                 "y": 0,
                 "width": 4,
-                "height": 280
+                "height": 280,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 1138,
                 "y": 700,
                 "width": 4,
-                "height": 200
+                "height": 200,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 680,
                 "y": 698,
                 "width": 460,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 678,
                 "y": 600,
                 "width": 4,
-                "height": 100
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 680,
                 "y": 598,
                 "width": 180,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 858,
                 "y": 600,
                 "width": 4,
-                "height": 60
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 860,
                 "y": 658,
                 "width": 200,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 1058,
                 "y": 560,
                 "width": 4,
-                "height": 100
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 1060,
                 "y": 558,
                 "width": 60,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 1118,
                 "y": 0,
                 "width": 4,
-                "height": 560
+                "height": 560,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 718,
                 "y": 840,
                 "width": 4,
-                "height": 60
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 640,
                 "y": 838,
                 "width": 80,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 638,
                 "y": 800,
                 "width": 4,
-                "height": 40
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 640,
                 "y": 798,
                 "width": 180,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 818,
                 "y": 800,
                 "width": 4,
-                "height": 100
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 758,
                 "y": 260,
                 "width": 4,
-                "height": 100
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 760,
                 "y": 258,
                 "width": 20,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 778,
                 "y": 260,
                 "width": 4,
-                "height": 100
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 640,
                 "y": 478,
                 "width": 260,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             }
         ],
         "ramps": [
@@ -6505,33 +6847,45 @@
                 "x1": 340,
                 "y1": 580,
                 "x2": 460,
-                "y2": 700
+                "y2": 700,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x1": 260,
                 "y1": 640,
                 "x2": 320,
-                "y2": 580
+                "y2": 580,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x1": 120,
                 "y1": 580,
                 "x2": 180,
-                "y2": 640
+                "y2": 640,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x1": 640,
                 "y1": 480,
                 "x2": 760,
-                "y2": 360
+                "y2": 360,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x1": 780,
                 "y1": 360,
                 "x2": 900,
-                "y2": 480
+                "y2": 480,
+                "friction": 1.0,
+                "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "22": {
         "background": "assets/images/levels/23.png",
@@ -6704,7 +7058,9 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "23": {
         "background": "assets/images/levels/24.png",
@@ -6909,7 +7265,9 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "24": {
         "background": "assets/images/levels/25.png",
@@ -6918,193 +7276,257 @@
                 "x": 1178,
                 "y": 0,
                 "width": 4,
-                "height": 900
+                "height": 900,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 858,
                 "y": 0,
                 "width": 4,
-                "height": 40
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 600,
                 "y": 38,
                 "width": 260,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 598,
                 "y": 0,
                 "width": 4,
-                "height": 40
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 18,
                 "y": 0,
                 "width": 4,
-                "height": 900
+                "height": 900,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 178,
                 "y": 760,
                 "width": 4,
-                "height": 20
+                "height": 20,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 180,
                 "y": 778,
                 "width": 100,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 278,
                 "y": 760,
                 "width": 4,
-                "height": 20
+                "height": 20,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 180,
                 "y": 758,
                 "width": 100,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 878,
                 "y": 860,
                 "width": 4,
-                "height": 40
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 880,
                 "y": 858,
                 "width": 180,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 1058,
                 "y": 860,
                 "width": 4,
-                "height": 40
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 978,
                 "y": 580,
                 "width": 4,
-                "height": 40
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 960,
                 "y": 578,
                 "width": 20,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 958,
                 "y": 580,
                 "width": 4,
-                "height": 40
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 840,
                 "y": 738,
                 "width": 260,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 518,
                 "y": 560,
                 "width": 4,
-                "height": 60
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 520,
                 "y": 618,
                 "width": 180,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 698,
                 "y": 560,
                 "width": 4,
-                "height": 60
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 520,
                 "y": 558,
                 "width": 180,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 598,
                 "y": 220,
                 "width": 4,
-                "height": 100
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 600,
                 "y": 218,
                 "width": 20,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 618,
                 "y": 220,
                 "width": 4,
-                "height": 100
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 480,
                 "y": 438,
                 "width": 260,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 160,
                 "y": 538,
                 "width": 100,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 158,
                 "y": 480,
                 "width": 4,
-                "height": 60
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 160,
                 "y": 478,
                 "width": 100,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 258,
                 "y": 480,
                 "width": 4,
-                "height": 60
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 238,
                 "y": 140,
                 "width": 4,
-                "height": 100
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 240,
                 "y": 138,
                 "width": 20,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 258,
                 "y": 140,
                 "width": 4,
-                "height": 100
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x": 120,
                 "y": 358,
                 "width": 260,
-                "height": 4
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
             }
         ],
         "ramps": [
@@ -7112,39 +7534,53 @@
                 "x1": 980,
                 "y1": 620,
                 "x2": 1100,
-                "y2": 740
+                "y2": 740,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x1": 840,
                 "y1": 740,
                 "x2": 960,
-                "y2": 620
+                "y2": 620,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x1": 480,
                 "y1": 440,
                 "x2": 600,
-                "y2": 320
+                "y2": 320,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x1": 620,
                 "y1": 320,
                 "x2": 740,
-                "y2": 440
+                "y2": 440,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x1": 120,
                 "y1": 360,
                 "x2": 240,
-                "y2": 240
+                "y2": 240,
+                "friction": 1.0,
+                "wind_push": 0.0
             },
             {
                 "x1": 260,
                 "y1": 240,
                 "x2": 380,
-                "y2": 360
+                "y2": 360,
+                "friction": 1.0,
+                "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "25": {
         "background": "assets/images/levels/26.png",
@@ -7155,31 +7591,23 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 20,
-                "y": 778,
-                "width": 120,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 138,
                 "y": 540,
                 "width": 4,
-                "height": 240,
+                "height": 120,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 78,
+                "x": 80,
                 "y": 538,
                 "width": 60,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 78,
@@ -7187,15 +7615,15 @@
                 "width": 4,
                 "height": 240,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 18,
+                "x": 20,
                 "y": 298,
                 "width": 60,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 18,
@@ -7203,7 +7631,7 @@
                 "width": 4,
                 "height": 300,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 378,
@@ -7211,7 +7639,7 @@
                 "width": 4,
                 "height": 360,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 380,
@@ -7219,7 +7647,7 @@
                 "width": 240,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 618,
@@ -7227,15 +7655,15 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 478,
+                "x": 480,
                 "y": 238,
                 "width": 140,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 478,
@@ -7243,7 +7671,7 @@
                 "width": 4,
                 "height": 240,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 578,
@@ -7251,7 +7679,7 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 580,
@@ -7259,7 +7687,7 @@
                 "width": 380,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 958,
@@ -7267,7 +7695,7 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 378,
@@ -7275,7 +7703,7 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 380,
@@ -7283,7 +7711,7 @@
                 "width": 340,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 718,
@@ -7291,7 +7719,7 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 380,
@@ -7299,7 +7727,7 @@
                 "width": 340,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 518,
@@ -7307,23 +7735,7 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 520,
-                "y": 818,
-                "width": 80,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 600,
-                "y": 818,
-                "width": 120,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 858,
@@ -7331,15 +7743,15 @@
                 "width": 4,
                 "height": 160,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 718,
+                "x": 720,
                 "y": 738,
                 "width": 140,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 718,
@@ -7347,15 +7759,15 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 518,
+                "x": 520,
                 "y": 778,
                 "width": 200,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1178,
@@ -7363,15 +7775,15 @@
                 "width": 4,
                 "height": 300,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1118,
-                "y": 540,
+                "y": 480,
                 "width": 4,
                 "height": 60,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1120,
@@ -7379,7 +7791,7 @@
                 "width": 80,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1198,
@@ -7387,15 +7799,15 @@
                 "width": 4,
                 "height": 100,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 1098,
+                "x": 1100,
                 "y": 378,
                 "width": 100,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1098,
@@ -7403,7 +7815,7 @@
                 "width": 4,
                 "height": 140,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1100,
@@ -7411,7 +7823,7 @@
                 "width": 80,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1178,
@@ -7419,9 +7831,37 @@
                 "width": 4,
                 "height": 240,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             }
-        ]
+        ],
+        "ramps": [
+            {
+                "x1": 20,
+                "y1": 780,
+                "x2": 140,
+                "y2": 660,
+                "friction": 1.0,
+                "wind_push": 0.3
+            },
+            {
+                "x1": 520,
+                "y1": 820,
+                "x2": 600,
+                "y2": 900,
+                "friction": 1.0,
+                "wind_push": 0.3
+            },
+            {
+                "x1": 1180,
+                "y1": 600,
+                "x2": 1120,
+                "y2": 540,
+                "friction": 1.0,
+                "wind_push": 0.3
+            }
+        ],
+        "is_blizzard_level": true,
+        "is_ice_level": false
     },
     "26": {
         "background": "assets/images/levels/27.png",
@@ -7432,7 +7872,7 @@
                 "width": 4,
                 "height": 140,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 380,
@@ -7440,7 +7880,7 @@
                 "width": 100,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 478,
@@ -7448,7 +7888,7 @@
                 "width": 4,
                 "height": 140,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 578,
@@ -7456,7 +7896,7 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 580,
@@ -7464,7 +7904,7 @@
                 "width": 380,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 958,
@@ -7472,7 +7912,7 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1178,
@@ -7480,15 +7920,15 @@
                 "width": 4,
                 "height": 720,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 1118,
+                "x": 1120,
                 "y": 178,
                 "width": 60,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1118,
@@ -7496,7 +7936,7 @@
                 "width": 4,
                 "height": 180,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 978,
@@ -7504,15 +7944,15 @@
                 "width": 4,
                 "height": 180,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 658,
+                "x": 660,
                 "y": 178,
                 "width": 320,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 658,
@@ -7520,15 +7960,15 @@
                 "width": 4,
                 "height": 180,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 278,
+                "x": 280,
                 "y": 238,
                 "width": 260,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 278,
@@ -7536,7 +7976,7 @@
                 "width": 4,
                 "height": 140,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 280,
@@ -7544,7 +7984,7 @@
                 "width": 260,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 538,
@@ -7552,7 +7992,7 @@
                 "width": 4,
                 "height": 140,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 18,
@@ -7560,23 +8000,15 @@
                 "width": 4,
                 "height": 900,
                 "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 138,
-                "y": 600,
-                "width": 4,
-                "height": 200,
-                "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 140,
-                "y": 378,
+                "y": 598,
                 "width": 140,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 278,
@@ -7584,31 +8016,31 @@
                 "width": 4,
                 "height": 220,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 140,
-                "y": 598,
+                "y": 378,
                 "width": 140,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 418,
-                "y": 600,
+                "x": 138,
+                "y": 380,
                 "width": 4,
-                "height": 180,
+                "height": 220,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 420,
-                "y": 418,
+                "y": 598,
                 "width": 160,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 578,
@@ -7616,17 +8048,27 @@
                 "width": 4,
                 "height": 180,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 420,
-                "y": 598,
+                "y": 418,
                 "width": 160,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
+            },
+            {
+                "x": 418,
+                "y": 420,
+                "width": 4,
+                "height": 180,
+                "friction": 1.0,
+                "wind_push": 0.3
             }
-        ]
+        ],
+        "is_blizzard_level": true,
+        "is_ice_level": false
     },
     "27": {
         "background": "assets/images/levels/28.png",
@@ -7637,15 +8079,7 @@
                 "width": 4,
                 "height": 900,
                 "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 178,
-                "y": 540,
-                "width": 4,
-                "height": 200,
-                "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 180,
@@ -7653,7 +8087,7 @@
                 "width": 200,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 378,
@@ -7661,15 +8095,15 @@
                 "width": 4,
                 "height": 240,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 278,
+                "x": 280,
                 "y": 298,
                 "width": 100,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 278,
@@ -7677,15 +8111,15 @@
                 "width": 4,
                 "height": 80,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 178,
+                "x": 180,
                 "y": 218,
                 "width": 100,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 178,
@@ -7693,7 +8127,7 @@
                 "width": 4,
                 "height": 320,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 538,
@@ -7701,7 +8135,7 @@
                 "width": 4,
                 "height": 140,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 540,
@@ -7709,7 +8143,7 @@
                 "width": 360,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 898,
@@ -7717,15 +8151,15 @@
                 "width": 4,
                 "height": 100,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 698,
+                "x": 700,
                 "y": 438,
                 "width": 200,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 698,
@@ -7733,7 +8167,7 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 540,
@@ -7741,7 +8175,7 @@
                 "width": 160,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 658,
@@ -7749,7 +8183,7 @@
                 "width": 4,
                 "height": 200,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 660,
@@ -7757,7 +8191,7 @@
                 "width": 320,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 978,
@@ -7765,7 +8199,7 @@
                 "width": 4,
                 "height": 200,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1118,
@@ -7773,7 +8207,7 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1120,
@@ -7781,7 +8215,7 @@
                 "width": 60,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1178,
@@ -7789,7 +8223,7 @@
                 "width": 4,
                 "height": 780,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 418,
@@ -7797,7 +8231,7 @@
                 "width": 4,
                 "height": 100,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 420,
@@ -7805,7 +8239,7 @@
                 "width": 200,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 618,
@@ -7813,7 +8247,7 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 620,
@@ -7821,7 +8255,7 @@
                 "width": 280,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 898,
@@ -7829,9 +8263,11 @@
                 "width": 4,
                 "height": 220,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             }
-        ]
+        ],
+        "is_blizzard_level": true,
+        "is_ice_level": false
     },
     "28": {
         "background": "assets/images/levels/29.png",
@@ -7842,15 +8278,7 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 20,
-                "y": 718,
-                "width": 60,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 78,
@@ -7858,7 +8286,7 @@
                 "width": 4,
                 "height": 200,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 20,
@@ -7866,7 +8294,7 @@
                 "width": 60,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 18,
@@ -7874,15 +8302,7 @@
                 "width": 4,
                 "height": 520,
                 "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 378,
-                "y": 620,
-                "width": 4,
-                "height": 60,
-                "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 380,
@@ -7890,7 +8310,7 @@
                 "width": 60,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 438,
@@ -7898,7 +8318,7 @@
                 "width": 4,
                 "height": 180,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 380,
@@ -7906,7 +8326,7 @@
                 "width": 60,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 378,
@@ -7914,7 +8334,7 @@
                 "width": 4,
                 "height": 180,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 418,
@@ -7922,7 +8342,7 @@
                 "width": 4,
                 "height": 60,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 420,
@@ -7930,7 +8350,7 @@
                 "width": 220,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 638,
@@ -7938,7 +8358,7 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 640,
@@ -7946,7 +8366,7 @@
                 "width": 280,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 918,
@@ -7954,7 +8374,7 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1178,
@@ -7962,15 +8382,7 @@
                 "width": 4,
                 "height": 460,
                 "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 1118,
-                "y": 380,
-                "width": 4,
-                "height": 60,
-                "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1118,
@@ -7978,7 +8390,7 @@
                 "width": 4,
                 "height": 100,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1120,
@@ -7986,7 +8398,7 @@
                 "width": 60,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1178,
@@ -7994,7 +8406,7 @@
                 "width": 4,
                 "height": 280,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 498,
@@ -8002,15 +8414,15 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 178,
+                "x": 180,
                 "y": 118,
                 "width": 320,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 178,
@@ -8018,9 +8430,29 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             }
-        ]
+        ],
+        "ramps": [
+            {
+                "x1": 20,
+                "y1": 780,
+                "x2": 80,
+                "y2": 720,
+                "friction": 1.0,
+                "wind_push": 0.3
+            },
+            {
+                "x1": 1180,
+                "y1": 440,
+                "x2": 1120,
+                "y2": 380,
+                "friction": 1.0,
+                "wind_push": 0.3
+            }
+        ],
+        "is_blizzard_level": true,
+        "is_ice_level": false
     },
     "29": {
         "background": "assets/images/levels/30.png",
@@ -8031,15 +8463,15 @@
                 "width": 4,
                 "height": 800,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 1098,
+                "x": 1100,
                 "y": 98,
                 "width": 80,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1098,
@@ -8047,15 +8479,15 @@
                 "width": 4,
                 "height": 60,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 1018,
+                "x": 1020,
                 "y": 38,
                 "width": 80,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1018,
@@ -8063,7 +8495,7 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 178,
@@ -8071,7 +8503,7 @@
                 "width": 4,
                 "height": 100,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 180,
@@ -8079,7 +8511,7 @@
                 "width": 160,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 338,
@@ -8087,7 +8519,7 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 340,
@@ -8095,7 +8527,7 @@
                 "width": 160,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 498,
@@ -8103,7 +8535,7 @@
                 "width": 4,
                 "height": 80,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 18,
@@ -8111,7 +8543,15 @@
                 "width": 4,
                 "height": 900,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
+            },
+            {
+                "x": 680,
+                "y": 698,
+                "width": 120,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.3
             },
             {
                 "x": 678,
@@ -8119,7 +8559,7 @@
                 "width": 4,
                 "height": 140,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 680,
@@ -8127,7 +8567,7 @@
                 "width": 120,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 798,
@@ -8135,15 +8575,23 @@
                 "width": 4,
                 "height": 140,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 958,
+                "x": 960,
+                "y": 738,
+                "width": 120,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.3
+            },
+            {
+                "x": 1078,
                 "y": 560,
                 "width": 4,
                 "height": 180,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 960,
@@ -8151,23 +8599,31 @@
                 "width": 120,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 1078,
+                "x": 958,
                 "y": 560,
                 "width": 4,
                 "height": 180,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 718,
+                "x": 720,
+                "y": 338,
+                "width": 100,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.3
+            },
+            {
+                "x": 818,
                 "y": 200,
                 "width": 4,
                 "height": 140,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 720,
@@ -8175,31 +8631,39 @@
                 "width": 100,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 818,
+                "x": 718,
                 "y": 200,
                 "width": 4,
                 "height": 140,
                 "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 918,
-                "y": 240,
-                "width": 4,
-                "height": 140,
-                "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 920,
-                "y": 238,
-                "width": 160,
+                "y": 378,
+                "width": 100,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
+            },
+            {
+                "x": 1018,
+                "y": 320,
+                "width": 4,
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.3
+            },
+            {
+                "x": 1020,
+                "y": 318,
+                "width": 60,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.3
             },
             {
                 "x": 1078,
@@ -8207,36 +8671,38 @@
                 "width": 4,
                 "height": 80,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 920,
-                "y": 378,
+                "y": 238,
                 "width": 160,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
+            },
+            {
+                "x": 918,
+                "y": 240,
+                "width": 4,
+                "height": 140,
+                "friction": 1.0,
+                "wind_push": 0.3
             }
-        ]
+        ],
+        "is_blizzard_level": true,
+        "is_ice_level": false
     },
     "30": {
         "background": "assets/images/levels/31.png",
         "platforms": [
             {
                 "x": 18,
-                "y": 640,
+                "y": 720,
                 "width": 4,
-                "height": 260,
+                "height": 180,
                 "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 20,
-                "y": 638,
-                "width": 80,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 98,
@@ -8244,7 +8710,7 @@
                 "width": 4,
                 "height": 140,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 20,
@@ -8252,7 +8718,7 @@
                 "width": 80,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 18,
@@ -8260,47 +8726,15 @@
                 "width": 4,
                 "height": 380,
                 "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 20,
-                "y": 118,
-                "width": 100,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 118,
                 "y": 0,
                 "width": 4,
-                "height": 120,
+                "height": 20,
                 "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 298,
-                "y": 480,
-                "width": 4,
-                "height": 60,
-                "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 300,
-                "y": 478,
-                "width": 140,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 438,
-                "y": 480,
-                "width": 4,
-                "height": 60,
-                "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 300,
@@ -8308,31 +8742,31 @@
                 "width": 140,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 678,
-                "y": 580,
+                "x": 438,
+                "y": 480,
                 "width": 4,
                 "height": 60,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 680,
-                "y": 578,
+                "x": 300,
+                "y": 478,
                 "width": 140,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 818,
-                "y": 580,
+                "x": 298,
+                "y": 480,
                 "width": 4,
                 "height": 60,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 680,
@@ -8340,7 +8774,31 @@
                 "width": 140,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
+            },
+            {
+                "x": 818,
+                "y": 580,
+                "width": 4,
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.3
+            },
+            {
+                "x": 680,
+                "y": 578,
+                "width": 140,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.3
+            },
+            {
+                "x": 678,
+                "y": 580,
+                "width": 4,
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.3
             },
             {
                 "x": 1018,
@@ -8348,7 +8806,7 @@
                 "width": 4,
                 "height": 80,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1020,
@@ -8356,15 +8814,15 @@
                 "width": 160,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1178,
-                "y": 400,
+                "y": 580,
                 "width": 4,
-                "height": 420,
+                "height": 240,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1098,
@@ -8372,7 +8830,7 @@
                 "width": 4,
                 "height": 100,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1100,
@@ -8380,7 +8838,7 @@
                 "width": 80,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 1178,
@@ -8388,31 +8846,7 @@
                 "width": 4,
                 "height": 400,
                 "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 658,
-                "y": 300,
-                "width": 4,
-                "height": 60,
-                "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 660,
-                "y": 298,
-                "width": 140,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": -0.5
-            },
-            {
-                "x": 798,
-                "y": 300,
-                "width": 4,
-                "height": 60,
-                "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 660,
@@ -8420,31 +8854,31 @@
                 "width": 140,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 338,
-                "y": 180,
+                "x": 658,
+                "y": 300,
                 "width": 4,
                 "height": 60,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 340,
-                "y": 178,
+                "x": 660,
+                "y": 298,
                 "width": 140,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
-                "x": 478,
-                "y": 180,
+                "x": 798,
+                "y": 300,
                 "width": 4,
                 "height": 60,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
             },
             {
                 "x": 340,
@@ -8452,9 +8886,61 @@
                 "width": 140,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": -0.5
+                "wind_push": 0.3
+            },
+            {
+                "x": 338,
+                "y": 180,
+                "width": 4,
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.3
+            },
+            {
+                "x": 340,
+                "y": 178,
+                "width": 140,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.3
+            },
+            {
+                "x": 478,
+                "y": 180,
+                "width": 4,
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.3
             }
-        ]
+        ],
+        "ramps": [
+            {
+                "x1": 20,
+                "y1": 720,
+                "x2": 100,
+                "y2": 640,
+                "friction": 1.0,
+                "wind_push": 0.3
+            },
+            {
+                "x1": 20,
+                "y1": 120,
+                "x2": 120,
+                "y2": 20,
+                "friction": 1.0,
+                "wind_push": 0.3
+            },
+            {
+                "x1": 1180,
+                "y1": 580,
+                "x2": 1100,
+                "y2": 500,
+                "friction": 1.0,
+                "wind_push": 0.3
+            }
+        ],
+        "is_blizzard_level": true,
+        "is_ice_level": false
     },
     "31": {
         "background": "assets/images/levels/32.png",
@@ -8465,7 +8951,7 @@
                 "width": 4,
                 "height": 80,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 20,
@@ -8473,7 +8959,7 @@
                 "width": 100,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 18,
@@ -8481,7 +8967,7 @@
                 "width": 4,
                 "height": 540,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 20,
@@ -8489,7 +8975,7 @@
                 "width": 480,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 498,
@@ -8497,7 +8983,7 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 40,
@@ -8505,7 +8991,7 @@
                 "width": 460,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 38,
@@ -8513,7 +8999,7 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 40,
@@ -8521,7 +9007,7 @@
                 "width": 60,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 98,
@@ -8529,7 +9015,7 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 178,
@@ -8537,7 +9023,7 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 180,
@@ -8545,7 +9031,7 @@
                 "width": 60,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 238,
@@ -8553,7 +9039,7 @@
                 "width": 4,
                 "height": 80,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 240,
@@ -8561,7 +9047,7 @@
                 "width": 720,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 958,
@@ -8569,7 +9055,7 @@
                 "width": 4,
                 "height": 80,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 960,
@@ -8577,7 +9063,7 @@
                 "width": 60,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 1018,
@@ -8585,7 +9071,7 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 1098,
@@ -8593,7 +9079,7 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 1100,
@@ -8601,7 +9087,7 @@
                 "width": 60,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 1158,
@@ -8609,7 +9095,15 @@
                 "width": 4,
                 "height": 120,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
+            },
+            {
+                "x": 700,
+                "y": 238,
+                "width": 460,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.3
             },
             {
                 "x": 698,
@@ -8617,15 +9111,15 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
-                "x": 698,
+                "x": 700,
                 "y": 278,
                 "width": 480,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 1178,
@@ -8633,7 +9127,7 @@
                 "width": 4,
                 "height": 620,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 738,
@@ -8641,7 +9135,7 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 740,
@@ -8649,7 +9143,7 @@
                 "width": 180,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 918,
@@ -8657,7 +9151,7 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 740,
@@ -8665,7 +9159,7 @@
                 "width": 180,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 498,
@@ -8673,15 +9167,15 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
-                "x": 358,
+                "x": 360,
                 "y": 638,
                 "width": 140,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 358,
@@ -8689,7 +9183,7 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 360,
@@ -8697,7 +9191,7 @@
                 "width": 140,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 658,
@@ -8705,7 +9199,7 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 660,
@@ -8713,7 +9207,7 @@
                 "width": 100,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 758,
@@ -8721,7 +9215,7 @@
                 "width": 4,
                 "height": 40,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             },
             {
                 "x": 660,
@@ -8729,9 +9223,11 @@
                 "width": 100,
                 "height": 4,
                 "friction": 1.0,
-                "wind_push": 0.0
+                "wind_push": 0.3
             }
-        ]
+        ],
+        "is_blizzard_level": true,
+        "is_ice_level": false
     },
     "32": {
         "background": "assets/images/levels/33.png",
@@ -8937,6 +9433,14 @@
                 "wind_push": 0.0
             },
             {
+                "x": 280,
+                "y": 418,
+                "width": 20,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
                 "x": 278,
                 "y": 340,
                 "width": 4,
@@ -8957,14 +9461,6 @@
                 "y": 340,
                 "width": 4,
                 "height": 80,
-                "friction": 1.0,
-                "wind_push": 0.0
-            },
-            {
-                "x": 280,
-                "y": 418,
-                "width": 20,
-                "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -9208,7 +9704,9 @@
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "33": {
         "background": "assets/images/levels/34.png",
@@ -9286,7 +9784,7 @@
                 "wind_push": 0.0
             },
             {
-                "x": 878,
+                "x": 880,
                 "y": 818,
                 "width": 20,
                 "height": 4,
@@ -9310,7 +9808,7 @@
                 "wind_push": 0.0
             },
             {
-                "x": 318,
+                "x": 320,
                 "y": 818,
                 "width": 20,
                 "height": 4,
@@ -9350,9 +9848,9 @@
                 "wind_push": 0.0
             },
             {
-                "x": 380,
+                "x": 480,
                 "y": 718,
-                "width": 180,
+                "width": 80,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -9366,7 +9864,7 @@
                 "wind_push": 0.0
             },
             {
-                "x": 458,
+                "x": 460,
                 "y": 638,
                 "width": 20,
                 "height": 4,
@@ -9382,7 +9880,7 @@
                 "wind_push": 0.0
             },
             {
-                "x": 378,
+                "x": 380,
                 "y": 718,
                 "width": 80,
                 "height": 4,
@@ -9414,9 +9912,9 @@
                 "wind_push": 0.0
             },
             {
-                "x": 200,
+                "x": 300,
                 "y": 518,
-                "width": 180,
+                "width": 80,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -9430,7 +9928,7 @@
                 "wind_push": 0.0
             },
             {
-                "x": 278,
+                "x": 280,
                 "y": 438,
                 "width": 20,
                 "height": 4,
@@ -9446,9 +9944,9 @@
                 "wind_push": 0.0
             },
             {
-                "x": 278,
+                "x": 200,
                 "y": 518,
-                "width": 20,
+                "width": 80,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -9478,9 +9976,9 @@
                 "wind_push": 0.0
             },
             {
-                "x": 840,
+                "x": 940,
                 "y": 498,
-                "width": 180,
+                "width": 80,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -9494,7 +9992,7 @@
                 "wind_push": 0.0
             },
             {
-                "x": 918,
+                "x": 920,
                 "y": 418,
                 "width": 20,
                 "height": 4,
@@ -9510,9 +10008,9 @@
                 "wind_push": 0.0
             },
             {
-                "x": 918,
+                "x": 840,
                 "y": 498,
-                "width": 20,
+                "width": 80,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -9522,6 +10020,14 @@
                 "y": 360,
                 "width": 4,
                 "height": 20,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 580,
+                "y": 378,
+                "width": 180,
+                "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -9536,15 +10042,7 @@
             {
                 "x": 580,
                 "y": 358,
-                "width": 180,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": 0.0
-            },
-            {
-                "x": 580,
-                "y": 378,
-                "width": 180,
+                "width": 80,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -9554,6 +10052,14 @@
                 "y": 280,
                 "width": 4,
                 "height": 80,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 660,
+                "y": 278,
+                "width": 20,
+                "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -9566,31 +10072,25 @@
                 "wind_push": 0.0
             },
             {
-                "x": 658,
+                "x": 680,
                 "y": 358,
-                "width": 20,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": 0.0
-            },
-            {
-                "x": 660,
-                "y": 278,
-                "width": 20,
+                "width": 80,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     },
     "34": {
         "background": "assets/images/levels/35.png",
         "platforms": [
             {
                 "x": 38,
-                "y": 0,
+                "y": 680,
                 "width": 4,
-                "height": 680,
+                "height": 220,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -9612,14 +10112,6 @@
             },
             {
                 "x": 18,
-                "y": 660,
-                "width": 4,
-                "height": 40,
-                "friction": 1.0,
-                "wind_push": 0.0
-            },
-            {
-                "x": 18,
                 "y": 0,
                 "width": 4,
                 "height": 620,
@@ -9636,22 +10128,6 @@
             },
             {
                 "x": 238,
-                "y": 380,
-                "width": 4,
-                "height": 40,
-                "friction": 1.0,
-                "wind_push": 0.0
-            },
-            {
-                "x": 240,
-                "y": 418,
-                "width": 80,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": 0.0
-            },
-            {
-                "x": 318,
                 "y": 420,
                 "width": 4,
                 "height": 80,
@@ -9659,7 +10135,7 @@
                 "wind_push": 0.0
             },
             {
-                "x": 320,
+                "x": 240,
                 "y": 498,
                 "width": 80,
                 "height": 4,
@@ -9667,47 +10143,47 @@
                 "wind_push": 0.0
             },
             {
-                "x": 398,
-                "y": 500,
+                "x": 318,
+                "y": 0,
                 "width": 4,
-                "height": 360,
+                "height": 500,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 400,
-                "y": 858,
-                "width": 80,
+                "x": 238,
+                "y": 620,
+                "width": 4,
+                "height": 280,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 240,
+                "y": 618,
+                "width": 100,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 478,
-                "y": 860,
+                "x": 338,
+                "y": 620,
                 "width": 4,
-                "height": 40,
+                "height": 20,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 878,
-                "y": 860,
-                "width": 4,
-                "height": 40,
-                "friction": 1.0,
-                "wind_push": 0.0
-            },
-            {
-                "x": 880,
-                "y": 858,
-                "width": 80,
+                "x": 320,
+                "y": 638,
+                "width": 20,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 958,
+                "x": 318,
                 "y": 640,
                 "width": 4,
                 "height": 220,
@@ -9715,9 +10191,49 @@
                 "wind_push": 0.0
             },
             {
-                "x": 858,
+                "x": 320,
+                "y": 858,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 398,
+                "y": 860,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 798,
+                "y": 860,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 800,
+                "y": 858,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 878,
+                "y": 640,
+                "width": 4,
+                "height": 220,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 860,
                 "y": 638,
-                "width": 100,
+                "width": 20,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -9742,21 +10258,21 @@
                 "x": 958,
                 "y": 620,
                 "width": 4,
-                "height": 20,
+                "height": 280,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
                 "x": 1158,
-                "y": 900,
+                "y": 680,
                 "width": 4,
-                "height": -220,
+                "height": 220,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 1138,
-                "y": 680,
+                "x": 1140,
+                "y": 678,
                 "width": 20,
                 "height": 4,
                 "friction": 1.0,
@@ -9771,18 +10287,10 @@
                 "wind_push": 0.0
             },
             {
-                "x": 1140,
-                "y": 618,
-                "width": 40,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": 0.0
-            },
-            {
                 "x": 1178,
-                "y": 620,
+                "y": 0,
                 "width": 4,
-                "height": 280,
+                "height": 620,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -9795,34 +10303,18 @@
                 "wind_push": 0.0
             },
             {
-                "x": 920,
-                "y": 398,
-                "width": 40,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": 0.0
-            },
-            {
                 "x": 958,
-                "y": 400,
-                "width": 4,
-                "height": 40,
-                "friction": 1.0,
-                "wind_push": 0.0
-            },
-            {
-                "x": 960,
-                "y": 438,
-                "width": 80,
-                "height": 4,
-                "friction": 1.0,
-                "wind_push": 0.0
-            },
-            {
-                "x": 1038,
                 "y": 440,
                 "width": 4,
                 "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 880,
+                "y": 498,
+                "width": 80,
+                "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
@@ -9835,7 +10327,7 @@
                 "wind_push": 0.0
             },
             {
-                "x": 758,
+                "x": 760,
                 "y": 38,
                 "width": 120,
                 "height": 4,
@@ -9875,15 +10367,15 @@
                 "wind_push": 0.0
             },
             {
-                "x": 640,
+                "x": 740,
                 "y": 418,
-                "width": 180,
+                "width": 80,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 718,
+                "x": 738,
                 "y": 340,
                 "width": 4,
                 "height": 80,
@@ -9899,7 +10391,7 @@
                 "wind_push": 0.0
             },
             {
-                "x": 738,
+                "x": 718,
                 "y": 340,
                 "width": 4,
                 "height": 80,
@@ -9907,9 +10399,9 @@
                 "wind_push": 0.0
             },
             {
-                "x": 720,
+                "x": 640,
                 "y": 418,
-                "width": 20,
+                "width": 80,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
@@ -9939,15 +10431,15 @@
                 "wind_push": 0.0
             },
             {
-                "x": 380,
+                "x": 480,
                 "y": 258,
-                "width": 180,
+                "width": 80,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             },
             {
-                "x": 458,
+                "x": 478,
                 "y": 180,
                 "width": 4,
                 "height": 80,
@@ -9963,7 +10455,7 @@
                 "wind_push": 0.0
             },
             {
-                "x": 478,
+                "x": 458,
                 "y": 180,
                 "width": 4,
                 "height": 80,
@@ -9971,13 +10463,2603 @@
                 "wind_push": 0.0
             },
             {
-                "x": 460,
+                "x": 380,
                 "y": 258,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            }
+        ],
+        "ramps": [
+            {
+                "x1": 60,
+                "y1": 660,
+                "x2": 20,
+                "y2": 620,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 280,
+                "y1": 380,
+                "x2": 240,
+                "y2": 420,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 1140,
+                "y1": 660,
+                "x2": 1180,
+                "y2": 620,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 920,
+                "y1": 400,
+                "x2": 960,
+                "y2": 440,
+                "friction": 1.0,
+                "wind_push": 0.0
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
+    },
+    "35": {
+        "background": "assets/images/levels/36.png",
+        "platforms": [
+            {
+                "x": 18,
+                "y": 0,
+                "width": 4,
+                "height": 900,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 278,
+                "y": 720,
+                "width": 4,
+                "height": 180,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 460,
+                "y": 538,
+                "width": 100,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 318,
+                "y": 740,
+                "width": 4,
+                "height": 160,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 460,
+                "y": 598,
+                "width": 280,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 878,
+                "y": 740,
+                "width": 4,
+                "height": 20,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 880,
+                "y": 758,
+                "width": 40,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 918,
+                "y": 720,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 640,
+                "y": 538,
+                "width": 100,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 758,
+                "y": 880,
+                "width": 4,
+                "height": 20,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 720,
+                "y": 878,
+                "width": 40,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 718,
+                "y": 860,
+                "width": 4,
+                "height": 20,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 720,
+                "y": 858,
+                "width": 240,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 958,
+                "y": 860,
+                "width": 4,
+                "height": 20,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 920,
+                "y": 878,
+                "width": 40,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 918,
+                "y": 880,
+                "width": 4,
+                "height": 20,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1178,
+                "y": 700,
+                "width": 4,
+                "height": 200,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1120,
+                "y": 698,
+                "width": 60,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1118,
+                "y": 620,
+                "width": 4,
+                "height": 80,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1120,
+                "y": 618,
+                "width": 60,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1178,
+                "y": 440,
+                "width": 4,
+                "height": 180,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1120,
+                "y": 458,
+                "width": 60,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1118,
+                "y": 380,
+                "width": 4,
+                "height": 80,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1120,
+                "y": 378,
+                "width": 60,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1178,
+                "y": 40,
+                "width": 4,
+                "height": 340,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1040,
+                "y": 38,
+                "width": 140,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1038,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 638,
+                "y": 360,
+                "width": 4,
+                "height": 180,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 640,
+                "y": 358,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 718,
+                "y": 280,
+                "width": 4,
+                "height": 80,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 640,
+                "y": 278,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 638,
+                "y": 0,
+                "width": 4,
+                "height": 280,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 558,
+                "y": 360,
+                "width": 4,
+                "height": 180,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 480,
+                "y": 358,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 478,
+                "y": 280,
+                "width": 4,
+                "height": 80,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 480,
+                "y": 278,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 558,
+                "y": 200,
+                "width": 4,
+                "height": 80,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 560,
+                "y": 198,
+                "width": 20,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 578,
+                "y": 20,
+                "width": 4,
+                "height": 180,
+                "friction": 1.0,
+                "wind_push": 0.0
+            }
+        ],
+        "ramps": [
+            {
+                "x1": 280,
+                "y1": 720,
+                "x2": 460,
+                "y2": 540,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 320,
+                "y1": 740,
+                "x2": 460,
+                "y2": 600,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 740,
+                "y1": 600,
+                "x2": 880,
+                "y2": 740,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 920,
+                "y1": 720,
+                "x2": 740,
+                "y2": 540,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 580,
+                "y1": 20,
+                "x2": 560,
+                "y2": 0,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 560,
+                "y1": 0,
+                "x2": 520,
+                "y2": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 520,
+                "y1": 40,
+                "x2": 480,
+                "y2": 0,
+                "friction": 1.0,
+                "wind_push": 0.0
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
+    },
+    "36": {
+        "background": "assets/images/levels/37.png",
+        "platforms": [
+            {
+                "x": 1038,
+                "y": 820,
+                "width": 4,
+                "height": 80,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1040,
+                "y": 818,
+                "width": 140,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1178,
+                "y": 380,
+                "width": 4,
+                "height": 440,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1120,
+                "y": 378,
+                "width": 60,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1098,
+                "y": 0,
+                "width": 4,
+                "height": 280,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 638,
+                "y": 820,
+                "width": 4,
+                "height": 80,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 700,
+                "y": 758,
+                "width": 80,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 778,
+                "y": 660,
+                "width": 4,
+                "height": 100,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 660,
+                "y": 658,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 658,
+                "y": 660,
+                "width": 4,
+                "height": 20,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 18,
+                "y": 660,
+                "width": 4,
+                "height": 240,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 20,
+                "y": 658,
+                "width": 140,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 240,
+                "y": 738,
+                "width": 80,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 318,
+                "y": 740,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 320,
+                "y": 778,
+                "width": 80,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 398,
+                "y": 740,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 400,
+                "y": 738,
+                "width": 20,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 418,
+                "y": 680,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 300,
+                "y": 678,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 20,
+                "y": 498,
+                "width": 100,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 18,
+                "y": 0,
+                "width": 4,
+                "height": 500,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 118,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 120,
+                "y": 38,
+                "width": 80,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 198,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 358,
+                "y": 240,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 360,
+                "y": 298,
+                "width": 20,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 378,
+                "y": 300,
+                "width": 4,
+                "height": 100,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 380,
+                "y": 398,
+                "width": 80,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 458,
+                "y": 300,
+                "width": 4,
+                "height": 100,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 460,
+                "y": 298,
+                "width": 20,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 478,
+                "y": 240,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 360,
+                "y": 238,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 680,
+                "y": 418,
+                "width": 80,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 758,
+                "y": 320,
+                "width": 4,
+                "height": 100,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 760,
+                "y": 318,
+                "width": 20,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 778,
+                "y": 260,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 660,
+                "y": 258,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 658,
+                "y": 260,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 660,
+                "y": 318,
+                "width": 20,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 678,
+                "y": 320,
+                "width": 4,
+                "height": 100,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 378,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 380,
+                "y": 38,
+                "width": 80,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 458,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            }
+        ],
+        "ramps": [
+            {
+                "x1": 1120,
+                "y1": 380,
+                "x2": 1060,
+                "y2": 440,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 1060,
+                "y1": 440,
+                "x2": 1000,
+                "y2": 380,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 1000,
+                "y1": 380,
+                "x2": 1100,
+                "y2": 280,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 640,
+                "y1": 820,
+                "x2": 700,
+                "y2": 760,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 660,
+                "y1": 680,
+                "x2": 460,
+                "y2": 880,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 460,
+                "y1": 880,
+                "x2": 480,
+                "y2": 900,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 160,
+                "y1": 660,
+                "x2": 240,
+                "y2": 740,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 300,
+                "y1": 680,
+                "x2": 120,
+                "y2": 500,
+                "friction": 0.2,
+                "wind_push": 0.0
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": true
+    },
+    "37": {
+        "background": "assets/images/levels/38.png",
+        "platforms": [
+            {
+                "x": 18,
+                "y": 580,
+                "width": 4,
+                "height": 320,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 20,
+                "y": 578,
+                "width": 20,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 18,
+                "y": 0,
+                "width": 4,
+                "height": 440,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 118,
+                "y": 780,
+                "width": 4,
+                "height": 120,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 100,
+                "y": 778,
+                "width": 20,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 98,
+                "y": 720,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 100,
+                "y": 718,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 218,
+                "y": 720,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 200,
+                "y": 778,
+                "width": 20,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 198,
+                "y": 780,
+                "width": 4,
+                "height": 120,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 378,
+                "y": 780,
+                "width": 4,
+                "height": 120,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 360,
+                "y": 778,
+                "width": 20,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 358,
+                "y": 720,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 360,
+                "y": 718,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 678,
+                "y": 640,
+                "width": 4,
+                "height": 20,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 680,
+                "y": 658,
+                "width": 100,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 778,
+                "y": 660,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 660,
+                "y": 718,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 658,
+                "y": 680,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 640,
+                "y": 678,
+                "width": 20,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 460,
+                "y": 778,
+                "width": 80,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 458,
+                "y": 780,
+                "width": 4,
+                "height": 120,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1098,
+                "y": 860,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1080,
+                "y": 858,
+                "width": 20,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1078,
+                "y": 800,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1080,
+                "y": 798,
+                "width": 100,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1178,
+                "y": 580,
+                "width": 4,
+                "height": 220,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1140,
+                "y": 578,
+                "width": 40,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1138,
+                "y": 560,
+                "width": 4,
+                "height": 20,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1178,
+                "y": 80,
+                "width": 4,
+                "height": 440,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1140,
+                "y": 78,
+                "width": 40,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1138,
+                "y": 0,
+                "width": 4,
+                "height": 80,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1098,
+                "y": 220,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 980,
+                "y": 278,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 978,
+                "y": 220,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 980,
+                "y": 218,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 818,
+                "y": 160,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 700,
+                "y": 218,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 698,
+                "y": 160,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 700,
+                "y": 158,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 558,
+                "y": 360,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 440,
+                "y": 418,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 438,
+                "y": 360,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 440,
+                "y": 358,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 218,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 220,
+                "y": 38,
+                "width": 320,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 538,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 638,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 640,
+                "y": 38,
+                "width": 340,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 978,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            }
+        ],
+        "ramps": [
+            {
+                "x1": 40,
+                "y1": 580,
+                "x2": 80,
+                "y2": 620,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 80,
+                "y1": 620,
+                "x2": 140,
+                "y2": 560,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 140,
+                "y1": 560,
+                "x2": 20,
+                "y2": 440,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 480,
+                "y1": 720,
+                "x2": 720,
+                "y2": 480,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 720,
+                "y1": 480,
+                "x2": 780,
+                "y2": 540,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 780,
+                "y1": 540,
+                "x2": 680,
+                "y2": 640,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 640,
+                "y1": 680,
+                "x2": 540,
+                "y2": 780,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 1140,
+                "y1": 560,
+                "x2": 1180,
+                "y2": 520,
+                "friction": 0.2,
+                "wind_push": 0.0
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": true
+    },
+    "38": {
+        "background": "assets/images/levels/39.png",
+        "platforms": [
+            {
+                "x": 18,
+                "y": 0,
+                "width": 4,
+                "height": 920,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 218,
+                "y": 460,
+                "width": 4,
+                "height": 440,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 220,
+                "y": 458,
+                "width": 60,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 420,
+                "y": 598,
+                "width": 40,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 538,
+                "y": 680,
+                "width": 4,
+                "height": 220,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 638,
+                "y": 740,
+                "width": 4,
+                "height": 160,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 660,
+                "y": 718,
+                "width": 60,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 820,
+                "y": 818,
+                "width": 120,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 978,
+                "y": 860,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1138,
+                "y": 560,
+                "width": 4,
+                "height": 340,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1140,
+                "y": 558,
+                "width": 40,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1178,
+                "y": 20,
+                "width": 4,
+                "height": 540,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1120,
+                "y": 38,
+                "width": 60,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1118,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 918,
+                "y": 240,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 620,
+                "y": 298,
+                "width": 300,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 618,
+                "y": 240,
+                "width": 4,
+                "height": 60,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 620,
+                "y": 238,
+                "width": 100,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 278,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 280,
+                "y": 38,
+                "width": 80,
+                "height": 4,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x": 358,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 0.2,
+                "wind_push": 0.0
+            }
+        ],
+        "ramps": [
+            {
+                "x1": 280,
+                "y1": 460,
+                "x2": 420,
+                "y2": 600,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 460,
+                "y1": 600,
+                "x2": 540,
+                "y2": 680,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 640,
+                "y1": 740,
+                "x2": 660,
+                "y2": 720,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 720,
+                "y1": 720,
+                "x2": 820,
+                "y2": 820,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 940,
+                "y1": 820,
+                "x2": 980,
+                "y2": 860,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 720,
+                "y1": 240,
+                "x2": 820,
+                "y2": 140,
+                "friction": 0.2,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 820,
+                "y1": 140,
+                "x2": 920,
+                "y2": 240,
+                "friction": 0.2,
+                "wind_push": 0.0
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": true
+    },
+    "39": {
+        "background": "assets/images/levels/40.png",
+        "platforms": [
+            {
+                "x": 1118,
+                "y": 860,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1120,
+                "y": 858,
+                "width": 60,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1178,
+                "y": 620,
+                "width": 4,
+                "height": 240,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1120,
+                "y": 618,
+                "width": 60,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1118,
+                "y": 580,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1198,
+                "y": 0,
+                "width": 4,
+                "height": 500,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 358,
+                "y": 740,
+                "width": 4,
+                "height": 160,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 280,
+                "y": 738,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 278,
+                "y": 740,
+                "width": 4,
+                "height": 180,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 18,
+                "y": 620,
+                "width": 4,
+                "height": 280,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 20,
+                "y": 618,
+                "width": 60,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 78,
+                "y": 580,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": -2,
+                "y": 0,
+                "width": 4,
+                "height": 500,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 458,
+                "y": 620,
+                "width": 4,
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 460,
+                "y": 718,
+                "width": 20,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 478,
+                "y": 620,
+                "width": 4,
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 460,
+                "y": 618,
+                "width": 20,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 758,
+                "y": 680,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 760,
+                "y": 718,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 838,
+                "y": 680,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 760,
+                "y": 678,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 998,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 920,
+                "y": 38,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 918,
+                "y": 40,
+                "width": 4,
+                "height": 360,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 800,
+                "y": 398,
+                "width": 120,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 798,
+                "y": 360,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 800,
+                "y": 358,
+                "width": 40,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 838,
+                "y": 40,
+                "width": 4,
+                "height": 320,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 820,
+                "y": 38,
+                "width": 20,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 818,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 358,
+                "y": 0,
+                "width": 4,
+                "height": 80,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 280,
+                "y": 78,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 278,
+                "y": 0,
+                "width": 4,
+                "height": 80,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 278,
+                "y": 240,
+                "width": 4,
+                "height": 120,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 280,
+                "y": 358,
+                "width": 40,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 318,
+                "y": 280,
+                "width": 4,
+                "height": 80,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 320,
+                "y": 278,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 398,
+                "y": 240,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 280,
+                "y": 238,
+                "width": 120,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            }
+        ],
+        "ramps": [
+            {
+                "x1": 1120,
+                "y1": 580,
+                "x2": 1200,
+                "y2": 500,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x1": 80,
+                "y1": 580,
+                "x2": 0,
+                "y2": 500,
+                "friction": 1.0,
+                "wind_push": 0.0
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
+    },
+    "40": {
+        "background": "assets/images/levels/41.png",
+        "platforms": [
+            {
+                "x": 278,
+                "y": 360,
+                "width": 4,
+                "height": 540,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 260,
+                "y": 358,
+                "width": 20,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 258,
+                "y": 320,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 260,
+                "y": 318,
+                "width": 100,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 358,
+                "y": 320,
+                "width": 4,
+                "height": 580,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 818,
+                "y": 860,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 820,
+                "y": 858,
+                "width": 180,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 998,
+                "y": 860,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 538,
+                "y": 620,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 540,
+                "y": 658,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 618,
+                "y": 620,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 540,
+                "y": 618,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 818,
+                "y": 420,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 820,
+                "y": 458,
+                "width": 20,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 838,
+                "y": 460,
+                "width": 4,
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 840,
+                "y": 518,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 918,
+                "y": 0,
+                "width": 4,
+                "height": 520,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 820,
+                "y": 418,
+                "width": 60,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 878,
+                "y": 240,
+                "width": 4,
+                "height": 180,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 840,
+                "y": 238,
+                "width": 40,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 838,
+                "y": 0,
+                "width": 4,
+                "height": 240,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 618,
+                "y": 300,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 620,
+                "y": 338,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 698,
+                "y": 300,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 620,
+                "y": 298,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 338,
+                "y": 0,
+                "width": 4,
+                "height": 140,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 280,
+                "y": 138,
+                "width": 60,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 278,
+                "y": 40,
+                "width": 4,
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 220,
+                "y": 38,
+                "width": 60,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 218,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": -2,
+                "y": 0,
+                "width": 4,
+                "height": 900,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1198,
+                "y": 0,
+                "width": 4,
+                "height": 900,
+                "friction": 1.0,
+                "wind_push": 0.0
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
+    },
+    "41": {
+        "background": "assets/images/levels/42.png",
+        "platforms": [
+            {
+                "x": -2,
+                "y": 0,
+                "width": 4,
+                "height": 900,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 218,
+                "y": 860,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 220,
+                "y": 858,
+                "width": 120,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 338,
+                "y": 860,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 838,
+                "y": 600,
+                "width": 4,
+                "height": 300,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 840,
+                "y": 598,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 918,
+                "y": 600,
+                "width": 4,
+                "height": 300,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1198,
+                "y": 0,
+                "width": 4,
+                "height": 900,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 838,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 840,
+                "y": 38,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 918,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 838,
+                "y": 240,
+                "width": 4,
+                "height": 180,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 840,
+                "y": 418,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 918,
+                "y": 240,
+                "width": 4,
+                "height": 180,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 840,
+                "y": 238,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 578,
+                "y": 740,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 580,
+                "y": 778,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 658,
+                "y": 740,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 580,
+                "y": 738,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 398,
+                "y": 400,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 400,
+                "y": 438,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 478,
+                "y": 400,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 400,
+                "y": 398,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 278,
+                "y": 0,
+                "width": 4,
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 280,
+                "y": 98,
+                "width": 80,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 358,
+                "y": 40,
+                "width": 4,
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 360,
+                "y": 38,
+                "width": 60,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 418,
+                "y": 0,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 578,
+                "y": 440,
+                "width": 4,
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 580,
+                "y": 538,
+                "width": 20,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 598,
+                "y": 440,
+                "width": 4,
+                "height": 100,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 580,
+                "y": 438,
                 "width": 20,
                 "height": 4,
                 "friction": 1.0,
                 "wind_push": 0.0
             }
-        ]
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
+    },
+    "42": {
+        "background": "assets/images/levels/43.png",
+        "platforms": [
+            {
+                "x": 418,
+                "y": 860,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 280,
+                "y": 858,
+                "width": 140,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 278,
+                "y": 860,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 158,
+                "y": 820,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 120,
+                "y": 858,
+                "width": 40,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 118,
+                "y": 820,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 120,
+                "y": 818,
+                "width": 40,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 118,
+                "y": 460,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 120,
+                "y": 498,
+                "width": 40,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 158,
+                "y": 460,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 120,
+                "y": 458,
+                "width": 40,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 918,
+                "y": 380,
+                "width": 4,
+                "height": 520,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 920,
+                "y": 378,
+                "width": 160,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1078,
+                "y": 320,
+                "width": 4,
+                "height": 60,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1060,
+                "y": 318,
+                "width": 20,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1058,
+                "y": 320,
+                "width": 4,
+                "height": 40,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 280,
+                "y": 358,
+                "width": 780,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 278,
+                "y": 360,
+                "width": 4,
+                "height": 300,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 280,
+                "y": 658,
+                "width": 560,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 838,
+                "y": 660,
+                "width": 4,
+                "height": 240,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 1198,
+                "y": 0,
+                "width": 4,
+                "height": 900,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": -2,
+                "y": 0,
+                "width": 4,
+                "height": 900,
+                "friction": 1.0,
+                "wind_push": 0.0
+            },
+            {
+                "x": 0,
+                "y": -2,
+                "width": 1200,
+                "height": 4,
+                "friction": 1.0,
+                "wind_push": 0.0
+            }
+        ],
+        "is_blizzard_level": false,
+        "is_ice_level": false
     }
 }
