@@ -1,3 +1,4 @@
+from __future__ import annotations
 from abc import ABC, abstractmethod
 from enum import Enum, auto
 from typing import Any, Dict
@@ -7,13 +8,14 @@ class FitnessScenario(Enum):
     """
     Phase 1 Scenarios for evaluating fitness functions.
     """
-    SCENARIO_1_REWARDS = auto()  # Reward Shaping: Coins + Max Height
-    SCENARIO_2_SPEEDRUNNER = auto()  # Time Penalized: Coins + Max Height - Time Penalty
+    SCENARIO_1_REWARDS = auto()  # Reward shaping: coins + max height
+    SCENARIO_2_SPEEDRUNNER = auto()  # Time penalized: coins + max height - time penalty
 
 class BaseFitnessStrategy(ABC):
     """
     Strategy Pattern: Interface for Phase 1 Fitness Calculation Scenarios.
     """
+    __slots__ = ()
 
     @abstractmethod
     def calculate_fitness(self, agent: Any, time_left: float, max_time: float) -> float:
@@ -32,13 +34,14 @@ class BaseFitnessStrategy(ABC):
 
 class RewardsFitnessStrategy(BaseFitnessStrategy):
     """
-    Scenario 1: Reward Shaping (Positive/Negative Coin Net Score + Max Height Reached).
+    Scenario 1: Reward Shaping (Positive/Negative Coin Score + Max Height Reached).
     Formula: ff = coins_score_total + DR * DM
     """
+    __slots__ = ()
 
     def calculate_fitness(self, agent: Any, time_left: float, max_time: float) -> float:
         """
-        Calculates Scenario 1 fitness score combining height progress and total coin score (positive bonuses & negative penalties).
+        Calculates Scenario 1 fitness score combining height progress and total coin score.
 
         Args:
             agent (Any): Player agent entity evaluated.
@@ -48,9 +51,7 @@ class RewardsFitnessStrategy(BaseFitnessStrategy):
         Returns:
             float: Fitness score with positive/negative coin reward shaping.
         """
-        dm = getattr(agent, "max_height_reached", 0.0)
-        coins_score = getattr(agent, "coins_score_total", 0.0)
-        return coins_score + (Settings.GA_DISTANCE_REWARD_MULTIPLIER * dm)
+        return agent.coins_score_total + (Settings.GA_DISTANCE_REWARD_MULTIPLIER * agent.max_height_reached)
 
 
 class SpeedrunnerFitnessStrategy(BaseFitnessStrategy):
@@ -58,10 +59,11 @@ class SpeedrunnerFitnessStrategy(BaseFitnessStrategy):
     Scenario 2: Time Penalization (Coins Net Score + Max Height - Time Penalty).
     Formula: ff = coins_score_total + DR * DM - TP * (MT - TL)
     """
+    __slots__ = ()
 
     def calculate_fitness(self, agent: Any, time_left: float, max_time: float) -> float:
         """
-        Calculates Scenario 1 fitness score combining height progress, positive/negative coin scores, and time penalization.
+        Calculates Scenario 2 fitness score combining height progress, positive/negative coin scores, and time penalization.
 
         Args:
             agent (Any): Player agent entity evaluated.
@@ -71,21 +73,17 @@ class SpeedrunnerFitnessStrategy(BaseFitnessStrategy):
         Returns:
             float: Fitness score penalized by execution duration.
         """
-        dm = getattr(agent, "max_height_reached", 0.0)
-        coins_score = getattr(agent, "coins_score_total", 0.0)
-        elapsed_time = max_time - time_left
-        return coins_score + (Settings.GA_DISTANCE_REWARD_MULTIPLIER * dm) - (Settings.GA_TIME_PENALTY_VALUE * elapsed_time)
+        elapsed_time = getattr(agent, "finish_time", max_time - time_left)
+        return agent.coins_score_total + (Settings.GA_DISTANCE_REWARD_MULTIPLIER * agent.max_height_reached) - (Settings.GA_TIME_PENALTY_VALUE * elapsed_time)
 
 
 class FitnessStrategyFactory:
     """
     Factory Pattern: Creates and switches between Phase 1 Fitness Strategies dynamically.
     """
+    __slots__ = ()
     
-    _strategies: Dict[FitnessScenario, type] = {
-        FitnessScenario.SCENARIO_1_REWARDS: RewardsFitnessStrategy,
-        FitnessScenario.SCENARIO_2_SPEEDRUNNER: SpeedrunnerFitnessStrategy,
-    }
+    _instances: Dict[FitnessScenario, BaseFitnessStrategy] = {}
 
     @classmethod
     def create(cls, scenario: FitnessScenario) -> BaseFitnessStrategy:
@@ -98,7 +96,12 @@ class FitnessStrategyFactory:
         Returns:
             BaseFitnessStrategy: Concrete strategy instance corresponding to scenario.
         """
-        strategy_cls = cls._strategies.get(scenario)
-        if strategy_cls is None:
-            raise ValueError(f"Unknown Fitness Scenario: {scenario}")
-        return strategy_cls()
+        if scenario not in cls._instances:
+            if scenario is FitnessScenario.SCENARIO_1_REWARDS:
+                cls._instances[scenario] = RewardsFitnessStrategy()
+            elif scenario is FitnessScenario.SCENARIO_2_SPEEDRUNNER:
+                cls._instances[scenario] = SpeedrunnerFitnessStrategy()
+            else:
+                raise ValueError(f"Unknown Fitness Scenario: {scenario}")
+                
+        return cls._instances[scenario]

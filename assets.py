@@ -1,17 +1,23 @@
+from __future__ import annotations
 from pathlib import Path
 from typing import Dict, Optional, Tuple, Union
 from pygame import Surface, display, transform, SRCALPHA, image, error
 from settings import Settings
+from colors import Colors
 
 
 class AssetsManager:
     """
-    Assets Manager singleton that loads, scales, and caches game graphics.
-    Provides safe fallbacks for execution and generic image caching.
+    Assets Manager that loads, scales, and caches game graphics.
     """
     _instance: Optional['AssetsManager'] = None
 
     PLAYER_POSES: Tuple[str, ...] = ("idle", "squat", "jump", "fall", "fallen", "oof", "run1", "run2", "run3")
+    
+    __slots__ = (
+        'player_images_right', 'player_images_left', 'snow_image', 
+        '_generic_cache', '_loaded'
+    )
 
     def __init__(self) -> None:
         """
@@ -47,7 +53,9 @@ class AssetsManager:
             Surface: The converted surface or original surface if display is inactive.
         """
         if display.get_surface() is not None:
-            return surface.convert_alpha()
+            if surface.get_flags() & SRCALPHA or surface.get_masks()[3]:
+                return surface.convert_alpha()
+            return surface.convert()
         return surface
 
     def load_image(self, path: Union[str, Path], size: Optional[Tuple[int, int]] = None) -> Optional[Surface]:
@@ -69,9 +77,9 @@ class AssetsManager:
 
         try:
             img: Surface = image.load(path_str)
-            img = self._prepare_surface(img)
             if size is not None:
                 img = transform.scale(img, size)
+            img = self._prepare_surface(img)
             self._generic_cache[cache_key] = img
             return img
         except (FileNotFoundError, error) as e:
@@ -88,22 +96,24 @@ class AssetsManager:
         base_path: Path = Path("assets") / "images" / "posses"
         player_size: Tuple[int, int] = (Settings.IMAGE_SCALEX, Settings.IMAGE_SCALEY)
 
+        # Local references for fast caching inside the loop
+        right_cache = self.player_images_right
+        left_cache = self.player_images_left
+
         # Load player sprites (right and left facing)
-        name: str
         for name in self.PLAYER_POSES:
             file_path: Path = base_path / f"{name}.png"
             img: Optional[Surface] = self.load_image(file_path, size=player_size)
 
             if img is None:
-                # Fallback surface filled with player color if the image is not found
-                fallback_surf: Surface = Surface(player_size, SRCALPHA)
-                fallback_surf.fill(Settings.PLAYER_COLOR)
-                img = fallback_surf
+                # fallback if the image is not found
+                img = Surface(player_size, SRCALPHA)
+                img.fill(Colors.PLAYER_COLOR)
 
-            self.player_images_right[name] = img
-            self.player_images_left[name] = transform.flip(img, True, False)
+            right_cache[name] = img
+            left_cache[name] = transform.flip(img, True, False)
 
-        # Load blizzard snow overlay
+        # blizzard snow 
         snow_path: Path = Path("assets") / "images" / "blizzard" / "snow.png"
         snow_size: Tuple[int, int] = (Settings.WIDTH, Settings.HEIGHT)
         self.snow_image = self.load_image(snow_path, size=snow_size)
@@ -124,8 +134,9 @@ class AssetsManager:
         if not self._loaded:
             self.load_assets()
 
-        images: Dict[str, Surface] = self.player_images_right if facing_right else self.player_images_left
-        return images.get(state, images.get("idle"))
+        images = self.player_images_right if facing_right else self.player_images_left
+        
+        return images.get(state) or images["idle"]
 
     def get_snow_image(self) -> Optional[Surface]:
         """

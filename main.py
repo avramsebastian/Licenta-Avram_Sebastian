@@ -1,3 +1,4 @@
+from __future__ import annotations
 from pygame import display, init, quit
 from sys import exit
 from game import Game

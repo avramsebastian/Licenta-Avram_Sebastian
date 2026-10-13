@@ -1,10 +1,9 @@
 from __future__ import annotations
-from settings import Settings
-from random import uniform, choice, random, randint, gauss, sample
 from dataclasses import dataclass, field
-from typing import List, Tuple, Dict
+from random import choice, gauss, randint, random, uniform
+from typing import Dict, List, Tuple
 
-# Jump and walk action boundary dictionary defining (min, max) strength intervals
+# Actions boundary dictionary defining (min, max) strength intervals
 JUMP_BOUNDS: Dict[str, Tuple[float, float]] = {
     "JUMP_LOW": (3.0, 6.0),
     "JUMP_MEDIUM": (15.0, 20.0),
@@ -12,11 +11,24 @@ JUMP_BOUNDS: Dict[str, Tuple[float, float]] = {
     "WALK": (20.0, 40.0)
 }
 
+ACTION_TYPES: Tuple[str, ...] = tuple(JUMP_BOUNDS.keys())
+DIRECTIONS: Tuple[int, int] = (-1, 1)
 
-@dataclass
+JUMP_CONFIG: Dict[str, Tuple[float, float, float]] = {
+    action: (low, high, high - low)
+    for action, (low, high) in JUMP_BOUNDS.items()
+}
+
+ACTION_TRANSITIONS: Dict[str, Tuple[str, ...]] = {
+    current: tuple(t for t in ACTION_TYPES if t != current)
+    for current in ACTION_TYPES
+}
+
+
+@dataclass(slots=True)
 class Gene:
     """
-    Represents an action type, a horizontal direction, and an action strength.
+    Represents the triplet: an action type, a horizontal direction, and an action strength.
     """
     action_type: str
     direction: int
@@ -25,8 +37,7 @@ class Gene:
     @staticmethod
     def random_gene() -> Gene:
         """
-        Generates a new random Gene instance with randomly selected action type,
-        direction (-1 or 1), and strength sampled within interval bounds.
+        Generates a new random Gene instance.
 
         Args:
             None
@@ -34,18 +45,22 @@ class Gene:
         Returns:
             Gene: A newly instantiated random Gene.
         """
-        action_type = choice(["JUMP_LOW", "JUMP_MEDIUM", "JUMP_HIGH", "WALK"])
-        direction = choice([-1, 1])
-        min_s, max_s = JUMP_BOUNDS[action_type]
+        action_type = choice(ACTION_TYPES)
+        direction = choice(DIRECTIONS)
+        min_s, max_s, _ = JUMP_CONFIG[action_type]
         strength = uniform(min_s, max_s)
         return Gene(action_type=action_type, direction=direction, strength=strength)
 
+    def copy(self) -> Gene:
+        """Fast cloning without deepcopy overhead."""
+        return Gene(self.action_type, self.direction, self.strength)
+    
     def mutate(
         self, 
         mutation_rate_dir:float,
         mutation_rate_type:float,
         mutation_rate_strength:float,
-        sigma,
+        sigma: float,
     ) -> None:
         """
         Applies independent mutations to direction, action type, and strength.
@@ -64,32 +79,25 @@ class Gene:
         """
 
         if random() < mutation_rate_dir:
-            self.direction = choice([-1, 1])
+            self.direction = choice(DIRECTIONS)
 
         if random() < mutation_rate_type:
-            types = ["JUMP_LOW", "JUMP_MEDIUM", "JUMP_HIGH", "WALK"]
-            if self.action_type in types:
-                types.remove(self.action_type)
-            self.action_type = choice(types)
-
-            min_s, max_s = JUMP_BOUNDS[self.action_type]
+            self.action_type = choice(ACTION_TRANSITIONS[self.action_type])
+            min_s, max_s, _ = JUMP_CONFIG[self.action_type]
             self.strength = uniform(min_s, max_s)
 
         if random() < mutation_rate_strength:
-            min_s, max_s = JUMP_BOUNDS[self.action_type]
-            bracket_width = max_s - min_s
-            scaled_sigma = sigma * bracket_width
-
-            delta = gauss(0, scaled_sigma)
+            min_s, max_s, bracket_width = JUMP_CONFIG[self.action_type]
+            delta = gauss(0.0, sigma * bracket_width)
             new_strength = self.strength + delta
 
             self.strength = max(min_s, min(max_s, new_strength))
 
 
-@dataclass
+@dataclass(slots=True)
 class Genome:
     """
-    Container for a sequence of Genes.
+    List for a sequence of Genes.
     """
     genes: List[Gene] = field(default_factory=list)
 
@@ -108,8 +116,8 @@ class Genome:
 
     def crossover(self, partner: Genome, crossover_rate: float) -> Tuple[Genome, Genome]:
         """
-        Performs 1-point crossover between this genome and a partner genome.
-
+        Performs 1-point crossover, for the first 40% of the shorter genome, with a given probability.
+        Because the 2-point will create 2 breaking points.
         Args:
             partner (Genome): The partner Genome instance for crossover.
             crossover_rate (float): Probability of performing crossover.
@@ -118,22 +126,18 @@ class Genome:
             Tuple[Genome, Genome]: Two offspring Genome instances.
         """
         min_len = min(len(self.genes), len(partner.genes))
-        if random() > crossover_rate or min_len < 2:
+        max_cut = int(min_len * 0.40)
+
+        if random() > crossover_rate or max_cut < 2:
             return (
                 Genome(genes=[Gene(g.action_type, g.direction, g.strength) for g in self.genes]),
                 Genome(genes=[Gene(g.action_type, g.direction, g.strength) for g in partner.genes])
             )
 
-        cut = randint(2, min_len // 2 - 1)
+        cut = randint(2, max_cut)
 
-        child1_genes = [
-            Gene(g.action_type, g.direction, g.strength)
-            for g in self.genes[:cut] + partner.genes[cut:]
-        ]
-        child2_genes = [
-            Gene(g.action_type, g.direction, g.strength)
-            for g in partner.genes[:cut] + self.genes[cut:]
-        ]
+        child1_genes = [g.copy() for g in self.genes[:cut]] + [g.copy() for g in partner.genes[cut:]]
+        child2_genes = [g.copy() for g in partner.genes[:cut]] + [g.copy() for g in self.genes[cut:]]
 
         return (Genome(genes=child1_genes), Genome(genes=child2_genes))
 
@@ -142,7 +146,7 @@ class Genome:
         mutation_rate_dir:float,
         mutation_rate_type:float, 
         mutation_rate_strength:float,
-        sigma,
+        sigma: float,
     ) -> None:
         """
         Applies mutation across all genes uniformly.
@@ -174,5 +178,4 @@ class Genome:
         Returns:
             None
         """
-        for _ in range(count):
-            self.genes.append(Gene.random_gene())
+        self.genes.extend(Gene.random_gene() for _ in range(count))

@@ -1,23 +1,24 @@
+from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum, auto
 from typing import List, Optional
 from pygame import Vector2, Rect
 
 class LineType(Enum):
-    """Enumeration for classification of collision lines."""
+    """Enum for classification of collision lines."""
     HORIZONTAL = auto()
     VERTICAL = auto()
     DIAGONAL = auto()
 
 class Direction(Enum):
-    """Enumeration representing surface normal collision orientation."""
+    """Enum representing surface normal collision orientation."""
     NONE = auto()
     UP = auto()
     DOWN = auto()
     LEFT = auto()
     RIGHT = auto()
 
-@dataclass
+@dataclass(slots=True)
 class DiagonalCollisionInfo:
     """Data container for diagonal collision details."""
 
@@ -43,7 +44,7 @@ class DiagonalCollisionInfo:
         self.bottomSideOfPlayerCollided = False
         self.collisionPoints.clear()
 
-@dataclass
+@dataclass(slots=True)
 class Line:
     """Represents a collision line in the physics engine."""
 
@@ -55,10 +56,17 @@ class Line:
     direction: Direction = Direction.NONE
     diagonalCollisionInfo: Optional[DiagonalCollisionInfo] = None
     bounding_rect: Rect = field(init=False)
+    dx: float = field(init=False)
+    dy: float = field(init=False)
+    inv_dx: float = field(init=False)
+    inv_dy: float = field(init=False)
+    line_vec: Vector2 = field(init=False)
+    p1: Vector2 = field(init=False)
+    p2: Vector2 = field(init=False)
 
     def __post_init__(self) -> None:
         """
-        Pre-computes and caches bounding Rect for zero-allocation broadphase culling.
+        Pre-computes and caches geometric constants, vectors, and bounding Rect.
 
         Args:
             None
@@ -66,11 +74,25 @@ class Line:
         Returns:
             None
         """
-        min_x = min(self.x1, self.x2)
-        min_y = min(self.y1, self.y2)
-        w = max(1.0, abs(self.x2 - self.x1))
-        h = max(1.0, abs(self.y2 - self.y1))
-        self.bounding_rect = Rect(min_x, min_y, w, h)
+        self.dx = self.x2 - self.x1
+        self.dy = self.y2 - self.y1
+        
+        # Truth value testing is evaluated faster in CPython than explicit non-zero comparisons
+        self.inv_dx = 1.0 / self.dx if self.dx else 0.0
+        self.inv_dy = 1.0 / self.dy if self.dy else 0.0
+
+        # Inline Vector2 creation to avoid unnecessary variable assignment overhead
+        self.line_vec = Vector2(self.dx, self.dy).normalize() if (self.dx or self.dy) else Vector2(0, 0)
+        self.p1 = Vector2(self.x1, self.y1)
+        self.p2 = Vector2(self.x2, self.y2)
+
+        # Pygame Rect creation
+        self.bounding_rect = Rect(
+            min(self.x1, self.x2), 
+            min(self.y1, self.y2), 
+            max(1.0, abs(self.dx)), 
+            max(1.0, abs(self.dy))
+        )
 
     @property
     def isHorizontal(self) -> bool:
@@ -83,7 +105,7 @@ class Line:
         Returns:
             bool: True if LineType is HORIZONTAL, False otherwise.
         """
-        return self.type == LineType.HORIZONTAL
+        return self.type is LineType.HORIZONTAL
 
     @property
     def isVertical(self) -> bool:
@@ -96,7 +118,7 @@ class Line:
         Returns:
             bool: True if LineType is VERTICAL, False otherwise.
         """
-        return self.type == LineType.VERTICAL
+        return self.type is LineType.VERTICAL
 
     @property
     def isDiagonal(self) -> bool:
@@ -109,4 +131,4 @@ class Line:
         Returns:
             bool: True if LineType is DIAGONAL, False otherwise.
         """
-        return self.type == LineType.DIAGONAL
+        return self.type is LineType.DIAGONAL

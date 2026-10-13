@@ -1,5 +1,5 @@
 from __future__ import annotations
-from math import ceil, copysign
+from math import ceil, copysign, hypot
 from typing import List, Optional, Tuple, TYPE_CHECKING
 from pygame import Rect, Vector2
 from geometry import DiagonalCollisionInfo, Line
@@ -12,9 +12,11 @@ if TYPE_CHECKING:
 
 class PhysicsEngine:
     """
-    Standalone Physics Engine handling movement, gravity, blizzard forces,
-    and hybrid Line/AABB collision resolution for entities.
+    Physics Engine handling movement, gravity, blizzard forces,
+    and hybrid Line collision for entities.
     """
+    
+    __slots__ = ()
 
     @staticmethod
     def update_entity_physics(player: Player, current_level: Level) -> None:
@@ -31,57 +33,69 @@ class PhysicsEngine:
         if player.is_ghost:
             return
 
-        # Track previous frame position to validate landing direction
-        player.previous_pos = player.current_pos.copy()
+        player.previous_pos.update(player.current_pos.x, player.current_pos.y)
 
         if player.fallen_timer > 0:
             player.fallen_timer -= 1
             if player.fallen_timer <= 0:
                 player.has_bumped = False
 
-        ramp_lines: List[Line] = current_level.get_ramp_lines()
-        platforms: List[Rect] = current_level.platform_rects
-
-        # Filter platforms & collision lines around player
         margin: int = Settings.MAX_COLLISION_CHECKS
-        broad_rect: Rect = Rect(
-            player.current_pos.x - margin,
-            player.current_pos.y - margin,
-            player.width + margin * 2,
-            player.height + margin * 2
-        )
-        nearby_platforms: List[Rect] = [rect for rect in platforms if broad_rect.colliderect(rect)]
-        nearby_ramp_lines: List[Line] = [l for l in ramp_lines if broad_rect.colliderect(l.bounding_rect)]
+        px: float = player.current_pos.x
+        py: float = player.current_pos.y
+        pw: int = player.width
+        ph: int = player.height
+        bx1: float = px - margin
+        by1: float = py - margin
+        bx2: float = px + pw + margin
+        by2: float = py + ph + margin
+
+        nearby_platforms: List[Rect] = [
+            r for r in current_level.platform_rects
+            if not (r.right < bx1 or r.left > bx2 or r.bottom < by1 or r.top > by2)
+        ]
+
+        has_ramps: bool = current_level.has_ramps
+        nearby_ramp_lines: List[Line] = [
+            l for l in current_level.get_ramp_lines()
+            if not (l.bounding_rect.right < bx1 or l.bounding_rect.left > bx2 or l.bounding_rect.bottom < by1 or l.bounding_rect.top > by2)
+        ] if has_ramps else []
 
         # Ground status check
         PhysicsEngine.check_ground_status(player, nearby_platforms, nearby_ramp_lines)
 
         # Pre-movement physics
-        PhysicsEngine.update_player_slide(player, nearby_ramp_lines)
+        if has_ramps and nearby_ramp_lines:
+            PhysicsEngine.update_player_slide(player, nearby_ramp_lines)
+        else:
+            player.is_sliding = False
+
         PhysicsEngine.apply_gravity(player)
         PhysicsEngine.apply_blizzard_force(player, current_level)
         PhysicsEngine.update_player_run(player, current_level)
 
-        # Apply sub-stepped displacement & collision resolution to eliminate tunneling when falling fast
         total_speed: Vector2 = player.current_speed
+        vx: float = total_speed.x
+        vy: float = total_speed.y
+
+        if player.is_on_ground and not vx and not vy:
+            player.previous_speed.update(vx, vy)
+            PhysicsEngine.keep_in_bounds(player)
+            PhysicsEngine.update_jump_timer(player)
+            return
+
         speed_mag: float = total_speed.magnitude()
         sub_steps: int = max(1, ceil(speed_mag / 8.0))
-        sub_speed: Vector2 = total_speed / sub_steps
+        
+        sub_vx: float = vx / sub_steps
+        sub_vy: float = vy / sub_steps
 
         for _ in range(sub_steps):
-            player.current_pos += sub_speed
-            sub_margin: int = Settings.SUBSTEP_MARGIN
-            step_broad_rect: Rect = Rect(
-                player.current_pos.x - sub_margin,
-                player.current_pos.y - sub_margin,
-                player.width + sub_margin * 2,
-                player.height + sub_margin * 2
-            )
-            step_platforms: List[Rect] = [rect for rect in nearby_platforms if step_broad_rect.colliderect(rect)]
-            step_ramps: List[Line] = [l for l in nearby_ramp_lines if step_broad_rect.colliderect(l.bounding_rect)]
-            PhysicsEngine.resolve_collisions_hybrid(player, step_platforms, step_ramps)
+            player.current_pos.x += sub_vx
+            player.current_pos.y += sub_vy
+            PhysicsEngine.resolve_collisions_hybrid(player, nearby_platforms, nearby_ramp_lines)
 
-        player.previous_speed = total_speed.copy()
+        player.previous_speed.update(total_speed.x, total_speed.y)
 
         # Post-movement boundary clamping and jump timer update
         PhysicsEngine.keep_in_bounds(player)
@@ -90,7 +104,7 @@ class PhysicsEngine:
     @staticmethod
     def apply_gravity(player: Player) -> None:
         """
-        Applies downward gravitational acceleration if the player is airborne.
+        Applies gravity acceleration if the player is airborne.
 
         Args:
             player (Player): Player entity instance to update gravity for.
@@ -106,7 +120,7 @@ class PhysicsEngine:
     @staticmethod
     def apply_blizzard_force(player: Player, current_level: Level) -> None:
         """
-        Applies oscillating wind forces on blizzard levels.
+        Applies wind forces on blizzard levels.
 
         Args:
             player (Player): Player entity instance receiving blizzard forces.
@@ -115,7 +129,7 @@ class PhysicsEngine:
         Returns:
             None
         """
-        if not current_level.is_blizzard_level:
+        if current_level.type != "snow":
             player.blizzard_force = 0.0
             return
 
@@ -135,12 +149,12 @@ class PhysicsEngine:
         if not player.is_on_ground:
             player.current_speed.x += player.blizzard_force
 
-        player.snow_pos += player.blizzard_force * Settings.BLIZZARD_IMG_MULTIPLIER
+        player.snow_pos = (player.snow_pos + player.blizzard_force * Settings.BLIZZARD_IMG_MULTIPLIER) % Settings.WIDTH
 
     @staticmethod
     def update_player_run(player: Player, current_level: Level) -> None:
         """
-        Updates horizontal running velocity depending on input and level terrain (ice vs normal).
+        Updates horizontal running depending on input and level terrain.
 
         Args:
             player (Player): Player entity instance to update running physics for.
@@ -154,7 +168,7 @@ class PhysicsEngine:
             return
 
         if player.is_on_ground and not player.is_sliding:
-            if current_level.is_ice_level:
+            if current_level.type == "ice":
                 if player.hold_dir < 0:
                     player.current_speed.x = max(-Settings.RUN_SPEED, player.current_speed.x - Settings.ICE_ACCELERATION)
                 elif player.hold_dir > 0:
@@ -189,7 +203,7 @@ class PhysicsEngine:
         """
         on_ramp: bool = False
         for l in current_lines:
-            if getattr(l, "isDiagonal", False):
+            if l.isDiagonal:
                 is_hit, _ = PhysicsEngine.check_line_collision(player, l)
                 if is_hit:
                     on_ramp = True
@@ -243,7 +257,7 @@ class PhysicsEngine:
     @staticmethod
     def check_ground_status(player: Player, platforms: List[Rect], ramp_lines: List[Line]) -> None:
         """
-        Verifies if player is still supported by solid ground or ramps beneath their feet.
+        Verifies if player is still supported by solid ground or ramps.
 
         Args:
             player (Player): Player entity instance to check grounding for.
@@ -256,15 +270,19 @@ class PhysicsEngine:
         if not player.is_on_ground:
             return
 
-        feet_rect: Rect = Rect(player.current_pos.x + 4, player.current_pos.y + player.height - 1, max(1, player.width - 8), 3)
+        f_left: float = player.current_pos.x + 1
+        f_right: float = player.current_pos.x + player.width - 1
+        f_top: float = player.current_pos.y + player.height
+        f_bottom: float = f_top + 1
 
         on_something: bool = False
         for rect in platforms:
-            if rect.width >= 20 and rect.width >= rect.height and feet_rect.colliderect(rect):
-                on_something = True
-                break
+            if rect.width >= 20 and rect.width >= rect.height:
+                if not (f_right <= rect.left or f_left >= rect.right or f_bottom <= rect.top or f_top >= rect.bottom):
+                    on_something = True
+                    break
 
-        if not on_something:
+        if not on_something and ramp_lines:
             for line in ramp_lines:
                 is_hit, _ = PhysicsEngine.check_line_collision(player, line)
                 if is_hit:
@@ -288,23 +306,30 @@ class PhysicsEngine:
         Returns:
             None
         """
+        if not platforms and not ramp_lines:
+            return
+
+        has_ramps: bool = bool(ramp_lines)
+        player_rect: Rect = player.rect
+
         for _ in range(Settings.HYBRID_LOOP_LIMIT):
             collided: bool = False
-            player_rect: Rect = Rect(player.current_pos.x, player.current_pos.y, player.width, player.height)
+            player_rect.topleft = player.current_pos
 
-            # Ramp Collisions
-            for line in ramp_lines:
-                is_hit, info = PhysicsEngine.check_line_collision(player, line)
-                if is_hit and info is not None:
-                    PhysicsEngine._resolve_ramp_collision(player, line, info)
-                    player_rect = Rect(player.current_pos.x, player.current_pos.y, player.width, player.height)
-                    collided = True
+            # Ramp collisions
+            if has_ramps:
+                for line in ramp_lines:
+                    is_hit, info = PhysicsEngine.check_line_collision(player, line)
+                    if is_hit and info is not None:
+                        PhysicsEngine._resolve_ramp_collision(player, line, info)
+                        player_rect.topleft = player.current_pos
+                        collided = True
 
-            # Platform Collisions
+            # Platform collisions
             for rect in platforms:
                 if player_rect.colliderect(rect):
                     PhysicsEngine._resolve_platform_overlap(player, rect)
-                    player_rect = Rect(player.current_pos.x, player.current_pos.y, player.width, player.height)
+                    player_rect.topleft = player.current_pos
                     collided = True
 
             if not collided:
@@ -322,52 +347,60 @@ class PhysicsEngine:
         Returns:
             None
         """
-        player_rect: Rect = Rect(player.current_pos.x, player.current_pos.y, player.width, player.height)
+        px: float = player.current_pos.x
+        py: float = player.current_pos.y
+        pw: int = player.width
+        ph: int = player.height
+        p_right: float = px + pw
+        p_bottom: float = py + ph
 
-        overlaps: Dict[str, float] = {
-            "top": player_rect.bottom - rect.top,
-            "bottom": rect.bottom - player_rect.top,
-            "left": player_rect.right - rect.left,
-            "right": rect.right - player_rect.left
-        }
+        top_overlap: float = p_bottom - rect.top
+        bottom_overlap: float = rect.bottom - py
+        left_overlap: float = p_right - rect.left
+        right_overlap: float = rect.right - px
 
-        side: str = min(overlaps, key=lambda k: overlaps[k])
+        min_overlap: float = top_overlap
+        side: str = "top"
+        if bottom_overlap < min_overlap:
+            min_overlap = bottom_overlap
+            side = "bottom"
+        if left_overlap < min_overlap:
+            min_overlap = left_overlap
+            side = "left"
+        if right_overlap < min_overlap:
+            min_overlap = right_overlap
+            side = "right"
 
         if side == "top":
-            prev_bottom: float = getattr(player, "previous_pos", player.current_pos).y + player.height
+            prev_bottom: float = player.previous_pos.y + ph
             was_above: bool = (prev_bottom <= rect.top + 6)
             is_horizontal_floor: bool = (rect.width >= 20 and rect.width >= rect.height)
-            horizontal_overlap: bool = (player_rect.right > rect.left + 4) and (player_rect.left < rect.right - 4)
+            horizontal_overlap: bool = (p_right > rect.left + 4) and (px < rect.right - 4)
 
             if player.current_speed.y >= 0 and was_above and is_horizontal_floor and horizontal_overlap:
-                player.current_pos.y = rect.top - player.height
+                player.current_pos.y = rect.top - ph
                 player.player_landed()
-            else:
-                if player.current_pos.x + player.width / 2 < rect.centerx:
-                    player.current_pos.x = rect.left - player.width
-                else:
-                    player.current_pos.x = rect.right
-                player.current_speed.x = -player.current_speed.x / 2
-                if not player.is_on_ground:
-                    player.has_bumped = True
+                
         elif side == "bottom" and player.current_speed.y <= 0:
             player.current_pos.y = rect.bottom
-            player.current_speed.y = -player.current_speed.y / 2
+            player.current_speed.y = -player.current_speed.y * 0.5
+        
         elif side == "left" and player.current_speed.x >= 0:
-            player.current_pos.x = rect.left - player.width
-            player.current_speed.x = -player.current_speed.x / 2
+            player.current_pos.x = rect.left - pw
+            player.current_speed.x = -player.current_speed.x * 0.5
             if not player.is_on_ground:
                 player.has_bumped = True
+        
         elif side == "right" and player.current_speed.x <= 0:
             player.current_pos.x = rect.right
-            player.current_speed.x = -player.current_speed.x / 2
+            player.current_speed.x = -player.current_speed.x * 0.5
             if not player.is_on_ground:
                 player.has_bumped = True
 
     @staticmethod
     def _resolve_ramp_collision(player: Player, line: Line, info: Optional[DiagonalCollisionInfo]) -> None:
         """
-        Dispatches ramp collision resolution depending on number of intersection points.
+        Ramp collision resolution depending on number of intersection points.
 
         Args:
             player (Player): Player entity instance colliding with ramp.
@@ -390,7 +423,7 @@ class PhysicsEngine:
     @staticmethod
     def _resolve_ramp_edge(player: Player, line: Line, info: DiagonalCollisionInfo) -> None:
         """
-        Resolves edge-to-edge ramp collision where player overlaps ramp segment across 2 points.
+        Resolves edge to edge ramp collision where player overlaps ramp segment across 2 points.
 
         Args:
             player (Player): Player entity instance sliding on ramp edge.
@@ -400,27 +433,36 @@ class PhysicsEngine:
         Returns:
             None
         """
-        midpoint: Vector2 = (info.collisionPoints[0] + info.collisionPoints[1]) * 0.5
+        p0 = info.collisionPoints[0]
+        p1 = info.collisionPoints[1]
+        mid_x: float = (p0.x + p1.x) * 0.5
+        mid_y: float = (p0.y + p1.y) * 0.5
 
-        player_corner: Vector2 = player.current_pos.copy()
+        cx: float = player.current_pos.x
+        cy: float = player.current_pos.y
         if info.bottomSideOfPlayerCollided:
-            player_corner.y += player.height
+            cy += player.height
         if info.rightSideOfPlayerCollided:
-            player_corner.x += player.width
+            cx += player.width
 
-        correction: Vector2 = midpoint - player_corner
+        corr_x: float = mid_x - cx
+        corr_y: float = mid_y - cy
 
-        if correction.length() > max(player.width, player.height):
-            correction = correction.normalize() * 5.0
+        c_len: float = hypot(corr_x, corr_y)
+        if c_len > max(player.width, player.height):
+            scale: float = 5.0 / c_len
+            corr_x *= scale
+            corr_y *= scale
 
-        player.current_pos += correction
+        player.current_pos.x += corr_x
+        player.current_pos.y += corr_y
 
-        line_vec: Vector2 = Vector2(line.x2 - line.x1, line.y2 - line.y1).normalize()
+        line_vec: Vector2 = line.line_vec
         speed_mag: float = player.current_speed.dot(line_vec)
-        player.current_speed = line_vec * speed_mag
+        player.current_speed.update(line_vec.x * speed_mag, line_vec.y * speed_mag)
 
         if info.topSideOfPlayerCollided:
-            player.current_speed = Vector2(0, 0)
+            player.current_speed.update(0.0, 0.0)
             player.is_sliding = False
 
     @staticmethod
@@ -446,7 +488,7 @@ class PhysicsEngine:
     @staticmethod
     def _resolve_ramp_point(player: Player, line: Line, info: DiagonalCollisionInfo) -> None:
         """
-        Resolves point-intersection collision with a ramp endpoint or single corner.
+        Resolves point intersection collision with a ramp endpoint or single corner.
 
         Args:
             player (Player): Player entity instance colliding with ramp point.
@@ -459,12 +501,18 @@ class PhysicsEngine:
         if not info.collisionPoints:
             return
 
-        player_rect: Rect = Rect(player.current_pos.x, player.current_pos.y, player.width, player.height)
-        p1: Vector2 = Vector2(line.x1, line.y1)
-        p2: Vector2 = Vector2(line.x2, line.y2)
+        px: float = player.current_pos.x
+        py: float = player.current_pos.y
+        pw: int = player.width
+        ph: int = player.height
+        p_right: float = px + pw
+        p_bottom: float = py + ph
 
-        p1_inside: bool = (player_rect.left < p1.x < player_rect.right) and (player_rect.top < p1.y < player_rect.bottom)
-        p2_inside: bool = (player_rect.left < p2.x < player_rect.right) and (player_rect.top < p2.y < player_rect.bottom)
+        p1: Vector2 = line.p1
+        p2: Vector2 = line.p2
+
+        p1_inside: bool = (px < p1.x < p_right) and (py < p1.y < p_bottom)
+        p2_inside: bool = (px < p2.x < p_right) and (py < p2.y < p_bottom)
 
         inside_pt: Optional[Vector2] = None
         if p1_inside:
@@ -473,58 +521,68 @@ class PhysicsEngine:
             inside_pt = p2
 
         if inside_pt:
-            overlaps: Dict[str, float] = {
-                "top": player_rect.bottom - inside_pt.y,
-                "bottom": inside_pt.y - player_rect.top,
-                "left": player_rect.right - inside_pt.x,
-                "right": inside_pt.x - player_rect.left
-            }
+            o_top: float = p_bottom - inside_pt.y
+            o_bottom: float = inside_pt.y - py
+            o_left: float = p_right - inside_pt.x
+            o_right: float = inside_pt.x - px
 
-            valid_overlaps: Dict[str, float] = {k: v for k, v in overlaps.items() if v >= 0}
-            if not valid_overlaps:
+            min_overlap: float = float('inf')
+            side: Optional[str] = None
+            if o_top >= 0 and o_top < min_overlap:
+                min_overlap = o_top
+                side = "top"
+            if o_bottom >= 0 and o_bottom < min_overlap:
+                min_overlap = o_bottom
+                side = "bottom"
+            if o_left >= 0 and o_left < min_overlap:
+                min_overlap = o_left
+                side = "left"
+            if o_right >= 0 and o_right < min_overlap:
+                min_overlap = o_right
+                side = "right"
+
+            if side is None:
                 return
 
-            side: str = min(valid_overlaps, key=lambda k: valid_overlaps[k])
-
             if side == "top" and player.current_speed.y >= 0:
-                player.current_pos.y = inside_pt.y - player.height - 1.0
+                player.current_pos.y = inside_pt.y - ph - 1.0
                 player.current_speed.x = PhysicsEngine._calculate_ramp_tip_push_x(inside_pt, line)
                 player.current_speed.y = max(1.0, player.current_speed.y)
                 player.ignore_air_friction_frames = Settings.RAMP_TIP_IGNORE_FRICTION_FRAMES
             elif side == "bottom" and player.current_speed.y <= 0:
                 player.current_pos.y = inside_pt.y + Settings.COLLISION_SNAP_OFFSET
-                player.current_speed.y = -player.current_speed.y / 2
+                player.current_speed.y = -player.current_speed.y * 0.5
             elif side == "left" and player.current_speed.x >= 0:
-                player.current_pos.x = inside_pt.x - player.width
-                player.current_speed.x = -player.current_speed.x / 2
+                player.current_pos.x = inside_pt.x - pw
+                player.current_speed.x = -player.current_speed.x * 0.5
                 if not player.is_on_ground:
                     player.has_bumped = True
             elif side == "right" and player.current_speed.x <= 0:
                 player.current_pos.x = inside_pt.x + Settings.COLLISION_SNAP_OFFSET
-                player.current_speed.x = -player.current_speed.x / 2
+                player.current_speed.x = -player.current_speed.x * 0.5
                 if not player.is_on_ground:
                     player.has_bumped = True
         else:
             pt: Vector2 = info.collisionPoints[0]
             if info.topSideOfPlayerCollided:
                 player.current_pos.y = pt.y + Settings.COLLISION_SNAP_OFFSET
-                player.current_speed.y = -player.current_speed.y / 2
+                player.current_speed.y = -player.current_speed.y * 0.5
             elif info.bottomSideOfPlayerCollided:
-                player.current_pos.y = pt.y - player.height - Settings.COLLISION_SNAP_OFFSET - 1.0
+                player.current_pos.y = pt.y - ph - Settings.COLLISION_SNAP_OFFSET - 1.0
                 player.current_speed.x = PhysicsEngine._calculate_ramp_tip_push_x(pt, line)
                 player.current_speed.y = max(1.0, player.current_speed.y)
                 player.ignore_air_friction_frames = Settings.RAMP_TIP_IGNORE_FRICTION_FRAMES
             elif info.leftSideOfPlayerCollided:
                 player.current_pos.x = pt.x + Settings.COLLISION_SNAP_OFFSET
-                player.current_speed.x = -player.current_speed.x / 2
+                player.current_speed.x = -player.current_speed.x * 0.5
             elif info.rightSideOfPlayerCollided:
-                player.current_pos.x = pt.x - player.width - Settings.COLLISION_SNAP_OFFSET
-                player.current_speed.x = -player.current_speed.x / 2
+                player.current_pos.x = pt.x - pw - Settings.COLLISION_SNAP_OFFSET
+                player.current_speed.x = -player.current_speed.x * 0.5
 
     @staticmethod
     def check_line_collision(player: Player, l: Line) -> Tuple[bool, Optional[DiagonalCollisionInfo]]:
         """
-        Checks if player bounding rect intersects with a Line segment and returns un-shared collision info.
+        Checks if player bounding rect intersects with a Line segment.
 
         Args:
             player (Player): Player entity instance to test.
@@ -536,13 +594,11 @@ class PhysicsEngine:
         if l.isDiagonal:
             return PhysicsEngine._check_diagonal_collision(player, l)
 
-        rect: Rect = Rect(player.current_pos.x, player.current_pos.y, player.width, player.height)
-        if l.isHorizontal:
-            is_hit: bool = rect.colliderect(Rect(l.x1, l.y1, max(1.0, l.x2 - l.x1), 1.0))
-            return (is_hit, None)
-        else:
-            is_hit: bool = rect.colliderect(Rect(l.x1, l.y1, 1.0, max(1.0, l.y2 - l.y1)))
-            return (is_hit, None)
+        px: float = player.current_pos.x
+        py: float = player.current_pos.y
+        br: Rect = l.bounding_rect
+        is_hit: bool = not (px + player.width <= br.left or px >= br.right or py + player.height <= br.top or py >= br.bottom)
+        return (is_hit, None)
 
     @staticmethod
     def is_colliding_with_line(player: Player, l: Line) -> bool:
@@ -562,7 +618,7 @@ class PhysicsEngine:
     @staticmethod
     def _check_diagonal_collision(player: Player, l: Line) -> Tuple[bool, Optional[DiagonalCollisionInfo]]:
         """
-        Calculates 2D line segment intersections between player 4 edges and a diagonal ramp Line.
+        Calculates line segment intersections between player 4 edges and a diagonal ramp Line.
 
         Args:
             player (Player): Player entity instance to evaluate diagonal collision for.
@@ -571,39 +627,64 @@ class PhysicsEngine:
         Returns:
             Tuple[bool, Optional[DiagonalCollisionInfo]]: Tuple of (is_colliding, collision_info).
         """
-        player_rect: Rect = Rect(player.current_pos.x, player.current_pos.y, player.width, player.height)
-        if not player_rect.colliderect(l.bounding_rect):
+        px: float = player.current_pos.x
+        py: float = player.current_pos.y
+        pw: int = player.width
+        ph: int = player.height
+        p_right: float = px + pw
+        p_bottom: float = py + ph
+
+        br: Rect = l.bounding_rect
+        if p_right <= br.left or px >= br.right or p_bottom <= br.top or py >= br.bottom:
             return (False, None)
 
-        tl: Vector2 = player.current_pos
-        tr: Vector2 = Vector2(tl.x + player.width, tl.y)
-        bl: Vector2 = Vector2(tl.x, tl.y + player.height - 1)
-        br: Vector2 = Vector2(bl.x + player.width, bl.y)
+        x1: float = l.x1
+        y1: float = l.y1
+        dx: float = l.dx
+        dy: float = l.dy
+        inv_dx: float = l.inv_dx
+        inv_dy: float = l.inv_dy
 
-        def intersect(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2) -> Tuple[bool, float, float]:
-            denom: float = ((p4.y - p3.y) * (p2.x - p1.x) - (p4.x - p3.x) * (p2.y - p1.y))
-            if denom == 0:
-                return (False, 0.0, 0.0)
-            ua: float = ((p4.x - p3.x) * (p1.y - p3.y) - (p4.y - p3.y) * (p1.x - p3.x)) / denom
-            ub: float = ((p2.x - p1.x) * (p1.y - p3.y) - (p2.y - p1.y) * (p1.x - p3.x)) / denom
-            if 0 <= ua <= 1 and 0 <= ub <= 1:
-                return (True, p1.x + ua * (p2.x - p1.x), p1.y + ua * (p2.y - p1.y))
-            return (False, 0.0, 0.0)
+        left_hit: bool = False
+        right_hit: bool = False
+        top_hit: bool = False
+        bottom_hit: bool = False
+        pts: List[Vector2] = []
 
-        lp1: Vector2 = Vector2(l.x1, l.y1)
-        lp2: Vector2 = Vector2(l.x2, l.y2)
-        left: Tuple[bool, float, float] = intersect(tl, bl, lp1, lp2)
-        right: Tuple[bool, float, float] = intersect(tr, br, lp1, lp2)
-        top: Tuple[bool, float, float] = intersect(tl, tr, lp1, lp2)
-        bottom: Tuple[bool, float, float] = intersect(bl, br, lp1, lp2)
+        if dx != 0:
+            t = (px - x1) * inv_dx
+            if 0.0 <= t <= 1.0:
+                y = y1 + t * dy
+                if py <= y <= p_bottom - 1:
+                    left_hit = True
+                    pts.append(Vector2(px, y))
 
-        if left[0] or right[0] or top[0] or bottom[0]:
-            info: DiagonalCollisionInfo = DiagonalCollisionInfo(
-                leftSideOfPlayerCollided=left[0],
-                rightSideOfPlayerCollided=right[0],
-                topSideOfPlayerCollided=top[0],
-                bottomSideOfPlayerCollided=bottom[0],
-                collisionPoints=[Vector2(res[1], res[2]) for res in (left, right, top, bottom) if res[0]]
-            )
+        if dx != 0:
+            t = (p_right - x1) * inv_dx
+            if 0.0 <= t <= 1.0:
+                y = y1 + t * dy
+                if py <= y <= p_bottom - 1:
+                    right_hit = True
+                    pts.append(Vector2(p_right, y))
+
+        if dy != 0:
+            t = (py - y1) * inv_dy
+            if 0.0 <= t <= 1.0:
+                x = x1 + t * dx
+                if px <= x <= p_right:
+                    top_hit = True
+                    pts.append(Vector2(x, py))
+
+        if dy != 0:
+            t = (p_bottom - 1 - y1) * inv_dy
+            if 0.0 <= t <= 1.0:
+                x = x1 + t * dx
+                if px <= x <= p_right:
+                    bottom_hit = True
+                    pts.append(Vector2(x, p_bottom - 1))
+
+        if left_hit or right_hit or top_hit or bottom_hit:
+            info = DiagonalCollisionInfo(left_hit, right_hit, top_hit, bottom_hit, pts)
             return (True, info)
+            
         return (False, None)

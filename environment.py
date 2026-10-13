@@ -1,15 +1,16 @@
+from __future__ import annotations
 from dataclasses import dataclass, field
 from json import load
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 from pygame import Rect, Surface, draw
-
 from assets import AssetsManager
 from geometry import Direction, Line, LineType
 from settings import Settings
+from colors import Colors
 
 
-@dataclass
+@dataclass(slots=True)
 class Platform:
     """
     Represents a physical platform in the game world that entities can stand on or collide with.
@@ -18,8 +19,9 @@ class Platform:
     y: int
     width: int
     height: int
-    friction: float = 1.0
-    wind_push: float = 0.0
+    friction: float = Settings.NORMAL_FRICTION
+    wind_push: float = Settings.NORMAL_WIND_PUSH
+    platform_type: str = "normal"
     rect: Rect = field(init=False)
 
     def __post_init__(self) -> None:
@@ -44,7 +46,7 @@ class Platform:
         Returns:
             None
         """
-        draw.rect(surface, Settings.PLATFORM_COLOR, self.rect, 3)
+        draw.rect(surface, Colors.PLATFORM_COLOR, self.rect, 3)
 
     @property
     def is_horizontal(self) -> bool:
@@ -73,7 +75,7 @@ class Platform:
         return self.rect.height > self.rect.width
 
 
-@dataclass
+@dataclass(slots=True)
 class Ramp:
     """
     Represents a diagonal surface in the game, defined by two points (x1, y1) and (x2, y2).
@@ -82,12 +84,14 @@ class Ramp:
     y1: int
     x2: int
     y2: int
-    friction: float = 1.0
-    wind_push: float = 0.0
+    friction: float = Settings.NORMAL_FRICTION
+    wind_push: float = Settings.NORMAL_WIND_PUSH
+    ramp_type: str = "normal"
+    _slope: float = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
         """
-        Ensures (x1, y1) is always the left-most point.
+        Ensures (x1, y1) is always the left-most point and pre-calculates the slope.
 
         Args:
             None
@@ -98,6 +102,8 @@ class Ramp:
         if self.x1 > self.x2:
             self.x1, self.x2 = self.x2, self.x1
             self.y1, self.y2 = self.y2, self.y1
+            
+        self._slope = (self.y2 - self.y1) / (self.x2 - self.x1) if self.x2 != self.x1 else 0.0
 
     def get_y_at_x(self, player_x: float) -> Optional[float]:
         """
@@ -110,7 +116,7 @@ class Ramp:
             Optional[float]: Calculated Y coordinate if within ramp bounds, None otherwise.
         """
         if self.x1 <= player_x <= self.x2:
-            return self.y1 + (player_x - self.x1) * (self.y2 - self.y1) / (self.x2 - self.x1)
+            return self.y1 + (player_x - self.x1) * self._slope
         return None
 
     def draw(self, surface: Surface) -> None:
@@ -123,26 +129,35 @@ class Ramp:
         Returns:
             None
         """
-        draw.line(surface, Settings.PLATFORM_COLOR, (self.x1, self.y1), (self.x2, self.y2), 4)
+        draw.line(surface, Colors.PLATFORM_COLOR, (self.x1, self.y1), (self.x2, self.y2), 4)
 
 
-@dataclass
+@dataclass(slots=True)
 class Coin:
     """
-    Collectible coin for reward shaping (positive guide coins vs negative trap coins).
+    Collectible coin for reward shaping (positive, negative and princess coins).
     """
     x: float
     y: float
     radius: float = Settings.COIN_RADIUS
     value: float = Settings.GA_COIN_REWARD_VALUE
     is_negative: bool = False
+    is_princess: bool = False
     id: str = ""
     rect: Rect = field(init=False)
+    
+    # Pre calculated rendering fields to avoid frame drops
+    _render_pos: Tuple[int, int] = field(init=False, repr=False)
+    _render_radius: int = field(init=False, repr=False)
+    _color: Tuple[int, int, int] = field(init=False, repr=False)
+    _p_shine_pos: Tuple[int, int] = field(init=False, repr=False)
+    _p_shine_radius: int = field(init=False, repr=False)
+    _p_outer_radius: int = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
         """
         Constructs the bounding Rect after dataclass initialization.
-        Assigns default value and unique identifier if not specified.
+        Assigns default value, unique identifier, and pre-calculates rendering data.
 
         Args:
             None
@@ -150,15 +165,38 @@ class Coin:
         Returns:
             None
         """
-        if self.is_negative and self.value == Settings.GA_COIN_REWARD_VALUE:
+        if self.is_princess:
+            if self.value == Settings.GA_COIN_REWARD_VALUE:
+                self.value = Settings.GA_PRINCESS_REWARD_VALUE
+            if not self.id:
+                self.id = f"princess_{int(self.x)}_{int(self.y)}"
+        elif self.is_negative and self.value == Settings.GA_COIN_REWARD_VALUE:
             self.value = Settings.GA_COIN_PENALTY_VALUE
-        if not self.id:
+            if not self.id:
+                self.id = f"coin_neg_{int(self.x)}_{int(self.y)}"
+        elif not self.id:
             self.id = f"coin_{int(self.x)}_{int(self.y)}"
+            
         self.rect = Rect(self.x - self.radius, self.y - self.radius, self.radius * 2, self.radius * 2)
+
+        # Pre compute rendering mathematics
+        self._render_pos = (int(self.x), int(self.y))
+        self._render_radius = int(self.radius)
+        
+        if self.is_princess:
+            self._p_outer_radius = int(self.radius + 2)
+            self._p_shine_pos = (int(self.x - self.radius * 0.3), int(self.y - self.radius * 0.3))
+            self._p_shine_radius = int(self.radius * 0.25)
+            self._color = Colors.PRINCESS_COIN_COLOR  # Placeholder for static typing
+        else:
+            self._p_outer_radius = 0
+            self._p_shine_pos = (0, 0)
+            self._p_shine_radius = 0
+            self._color = Colors.NEGATIVE_COIN_COLOR if (self.is_negative or self.value < 0) else Colors.COIN_COLOR
 
     def draw(self, surface: Surface) -> None:
         """
-        Renders positive coins in gold (Settings.COIN_COLOR) and negative coins in red (Settings.NEGATIVE_COIN_COLOR).
+        Renders coins with their colors.
 
         Args:
             surface (Surface): Target surface to render onto.
@@ -166,78 +204,118 @@ class Coin:
         Returns:
             None
         """
-        color = Settings.NEGATIVE_COIN_COLOR if (self.is_negative or self.value < 0) else Settings.COIN_COLOR
-        draw.circle(surface, color, (int(self.x), int(self.y)), int(self.radius))
+        if self.is_princess:
+            draw.circle(surface, Colors.PRINCESS_RIM_COLOR, self._render_pos, self._p_outer_radius)
+            draw.circle(surface, Colors.PRINCESS_COIN_COLOR, self._render_pos, self._render_radius)
+            draw.circle(surface, Colors.PRINCESS_SHINE_COLOR, self._p_shine_pos, self._p_shine_radius)
+        else:
+            draw.circle(surface, self._color, self._render_pos, self._render_radius)
 
 class PlatformFactory:
     """
-    Factory Pattern: Decouples platform, ramp, and coin creation from dictionary deserialization.
+    Decouples platform, ramp, and coin creation from dictionary data.
     """
+    __slots__ = ()
 
     @staticmethod
     def create_platform(data: Dict[str, Any]) -> Platform:
         """
-        Deserializes dictionary data into a Platform instance.
+        Creates a Platform instance with dictionary data.
 
         Args:
-            data (Dict[str, Any]): Dictionary containing platform fields (x, y, width, height, friction, etc.).
+            data (Dict[str, Any]): Dictionary containing platform fields (x, y, width, height, type, etc.).
 
         Returns:
             Platform: Instantiated Platform object.
         """
+        p_type: str = data.get("type", "normal")
+        if p_type == "snow":
+            friction = Settings.NORMAL_FRICTION
+            wind_push = Settings.SNOW_WIND_PUSH
+        elif p_type == "ice":
+            friction = Settings.ICE_FRICTION
+            wind_push = Settings.NORMAL_WIND_PUSH
+        else:
+            friction = Settings.NORMAL_FRICTION
+            wind_push = Settings.NORMAL_WIND_PUSH
+
         return Platform(
             x=data["x"],
             y=data["y"],
             width=data["width"],
             height=data["height"],
-            friction=data.get("friction", 1.0),
-            wind_push=data.get("wind_push", 0.0)
+            friction=friction,
+            wind_push=wind_push,
+            platform_type=p_type
         )
 
     @staticmethod
     def create_ramp(data: Dict[str, Any]) -> Ramp:
         """
-        Deserializes dictionary data into a Ramp instance.
+        Creates a Ramp instance with dictionary data.
 
         Args:
-            data (Dict[str, Any]): Dictionary containing ramp fields (x1, y1, x2, y2, friction, etc.).
+            data (Dict[str, Any]): Dictionary containing ramp fields (x1, y1, x2, y2, type, etc.).
 
         Returns:
             Ramp: Instantiated Ramp object.
         """
+        r_type: str = data.get("type", "normal")
+        if r_type == "snow":
+            friction = Settings.NORMAL_FRICTION
+            wind_push = Settings.SNOW_WIND_PUSH
+        elif r_type == "ice":
+            friction = Settings.ICE_FRICTION
+            wind_push = Settings.NORMAL_WIND_PUSH
+        else:
+            friction = Settings.NORMAL_FRICTION
+            wind_push = Settings.NORMAL_WIND_PUSH
+
         return Ramp(
             x1=data["x1"],
             y1=data["y1"],
             x2=data["x2"],
             y2=data["y2"],
-            friction=data.get("friction", 1.0),
-            wind_push=data.get("wind_push", 0.0)
+            friction=friction,
+            wind_push=wind_push,
+            ramp_type=r_type
         )
 
     @staticmethod
     def create_coin(data: Dict[str, Any], level_index: int = 0, coin_index: int = 0) -> Coin:
         """
-        Deserializes dictionary data into a Coin instance.
+        Creates a Coin instance with dictionary data.
 
         Args:
-            data (Dict[str, Any]): Dictionary containing coin fields (x, y, radius, value, is_negative, id).
+            data (Dict[str, Any]): Dictionary containing coin fields (x, y, radius, value, is_negative, is_princess, id).
             level_index (int): Index of the parent level for default ID generation.
             coin_index (int): Index of the coin in the level for default ID generation.
 
         Returns:
             Coin: Instantiated Coin object.
         """
-        is_neg = data.get("is_negative", False) or data.get("type", "").lower() == "negative"
-        default_val = Settings.GA_COIN_PENALTY_VALUE if is_neg else Settings.GA_COIN_REWARD_VALUE
+        is_princess = data.get("is_princess", False)
+        is_neg = data.get("is_negative", False)
+
+        if is_princess:
+            default_val = Settings.GA_PRINCESS_REWARD_VALUE
+            default_radius = Settings.PRINCESS_COIN_RADIUS
+            coin_id = data.get("id", f"princess_l{level_index}_{coin_index}_{int(data['x'])}_{int(data['y'])}")
+        else:
+            default_val = Settings.GA_COIN_PENALTY_VALUE if is_neg else Settings.GA_COIN_REWARD_VALUE
+            default_radius = Settings.COIN_RADIUS
+            coin_id = data.get("id", f"coin_l{level_index}_{coin_index}_{int(data['x'])}_{int(data['y'])}")
+
         val = data.get("value", default_val)
-        coin_id = data.get("id", f"coin_l{level_index}_{coin_index}_{int(data['x'])}_{int(data['y'])}")
+        radius = data.get("radius", default_radius)
 
         return Coin(
             x=data["x"],
             y=data["y"],
-            radius=data.get("radius", Settings.COIN_RADIUS),
+            radius=radius,
             value=val,
             is_negative=is_neg,
+            is_princess=is_princess,
             id=coin_id
         )
 
@@ -248,14 +326,20 @@ class Level:
     Holds the background image and the list of platforms/ramps/coins that make up the environment.
     """
 
+    __slots__ = (
+        'background_image', 'level_index', 'is_last_level', 'platforms', 'platform_rects', 
+        'floor_rects', 'ramps', 'coins', 'princess_coin', '_type', 
+        '_cached_collision_lines', '_cached_ramp_lines', 'has_ramps', 'render_surface'
+    )
+
     def __init__(
         self,
         bg_image_path: str,
         platforms_data: List[Platform],
         ramps_data: Optional[List[Ramp]] = None,
         coins_data: Optional[List[Coin]] = None,
-        is_blizzard_level: bool = False,
-        is_ice_level: bool = False
+        level_index: int = 0,
+        is_last_level: bool = False
     ) -> None:
         """
         Initializes a Level object with background assets and environment entities.
@@ -265,8 +349,8 @@ class Level:
             platforms_data (List[Platform]): List of Platform objects in this level.
             ramps_data (Optional[List[Ramp]]): Optional list of Ramp objects.
             coins_data (Optional[List[Coin]]): Optional list of Coin objects.
-            is_blizzard_level (bool): Flag indicating if blizzard wind forces are active.
-            is_ice_level (bool): Flag indicating if ice friction physics are active.
+            level_index (int): The 0-indexed level identifier.
+            is_last_level (bool): Flag indicating if this is the final level.
 
         Returns:
             None
@@ -281,10 +365,13 @@ class Level:
             self.background_image: Surface = loaded_bg
         else:
             self.background_image = Surface(target_size)
-            self.background_image.fill(Settings.BG_COLOR)
+            self.background_image.fill(Colors.BG_COLOR)
 
+        self.level_index: int = level_index
+        self.is_last_level: bool = is_last_level
         self.platforms: List[Platform] = platforms_data
         self.platform_rects: List[Rect] = []
+        
         for p in self.platforms:
             r: Rect = p.rect.copy()
             if r.top <= 0:
@@ -294,18 +381,34 @@ class Level:
                 r.height += Settings.HEIGHT
             self.platform_rects.append(r)
 
+        self.floor_rects: List[Rect] = [r for r in self.platform_rects if r.width >= 20 and r.width >= r.height]
+
         self.ramps: List[Ramp] = ramps_data if ramps_data is not None else []
         self.coins: List[Coin] = coins_data if coins_data is not None else []
-        self._is_blizzard_level: bool = is_blizzard_level
-        self._is_ice_level: bool = is_ice_level
+        self.princess_coin: Optional[Coin] = next((c for c in self.coins if c.is_princess), None)
 
-        # Cache collision lines once per level instance
+        # Determine level terrain type ('snow', 'ice', or 'normal')
+        if any(p.platform_type == "snow" for p in self.platforms) or any(r.ramp_type == "snow" for r in self.ramps):
+            self._type: str = "snow"
+        elif any(p.platform_type == "ice" for p in self.platforms) or any(r.ramp_type == "ice" for r in self.ramps):
+            self._type: str = "ice"
+        else:
+            self._type: str = "normal"
+
+        # cache collision lines once per level instance to optimize the fps
         self._cached_collision_lines: List[Line] = self._build_collision_lines()
         self._cached_ramp_lines: List[Line] = [l for l in self._cached_collision_lines if l.isDiagonal]
+        self.has_ramps: bool = len(self._cached_ramp_lines) > 0
+
+        self.render_surface: Surface = self.background_image.copy()
+        for platform in self.platforms:
+            platform.draw(self.render_surface)
+        for ramp in self.ramps:
+            ramp.draw(self.render_surface)
 
     def draw(self, surface: Surface) -> None:
         """
-        Renders background and all environment entities on the target surface.
+        Renders level geometry and active coins on the target surface.
 
         Args:
             surface (Surface): Target surface to render level onto.
@@ -313,13 +416,12 @@ class Level:
         Returns:
             None
         """
-        surface.blit(self.background_image, (0, 0))
-        for platform in self.platforms:
-            platform.draw(surface)
-        for ramp in self.ramps:
-            ramp.draw(surface)
-        for coin in self.coins:
-            coin.draw(surface)
+        if Settings.ALLOW_DRAW:
+            surface.blit(self.render_surface, (0, 0))
+            for coin in self.coins:
+                coin.draw(surface)
+        else:
+            surface.blit(self.background_image, (0, 0))
 
     def _build_collision_lines(self) -> List[Line]:
         """
@@ -333,21 +435,11 @@ class Level:
         """
         lines: List[Line] = []
         for p in self.platforms:
-            l_top: Line = Line(p.rect.left, p.rect.top, p.rect.right, p.rect.top, LineType.HORIZONTAL)
-            l_top.direction = Direction.UP
-            lines.append(l_top)
-
-            l_bot: Line = Line(p.rect.left, p.rect.bottom, p.rect.right, p.rect.bottom, LineType.HORIZONTAL)
-            l_bot.direction = Direction.DOWN
-            lines.append(l_bot)
-
-            l_left: Line = Line(p.rect.left, p.rect.top, p.rect.left, p.rect.bottom, LineType.VERTICAL)
-            l_left.direction = Direction.LEFT
-            lines.append(l_left)
-
-            l_right: Line = Line(p.rect.right, p.rect.top, p.rect.right, p.rect.bottom, LineType.VERTICAL)
-            l_right.direction = Direction.RIGHT
-            lines.append(l_right)
+            rect = p.rect
+            lines.append(Line(rect.left, rect.top, rect.right, rect.top, LineType.HORIZONTAL, Direction.UP))
+            lines.append(Line(rect.left, rect.bottom, rect.right, rect.bottom, LineType.HORIZONTAL, Direction.DOWN))
+            lines.append(Line(rect.left, rect.top, rect.left, rect.bottom, LineType.VERTICAL, Direction.LEFT))
+            lines.append(Line(rect.right, rect.top, rect.right, rect.bottom, LineType.VERTICAL, Direction.RIGHT))
 
         for r in self.ramps:
             lines.append(Line(r.x1, r.y1, r.x2, r.y2, LineType.DIAGONAL))
@@ -379,38 +471,28 @@ class Level:
         return self._cached_ramp_lines
 
     @property
-    def is_blizzard_level(self) -> bool:
+    def type(self) -> str:
         """
-        Returns True if the level has active blizzard/wind physics.
+        Returns the level terrain type ('normal', 'snow', or 'ice').
 
         Args:
             None
 
         Returns:
-            bool: True if blizzard physics active, False otherwise.
+            str: Level terrain type.
         """
-        return self._is_blizzard_level
-
-    @property
-    def is_ice_level(self) -> bool:
-        """
-        Returns True if the level has icy/slippery physics.
-
-        Args:
-            None
-
-        Returns:
-            bool: True if ice physics active, False otherwise.
-        """
-        return self._is_ice_level
+        return self._type
 
 
 class LevelManager:
     """
-    Factory & Manager Pattern: Manages loading, caching, and creation of Level objects.
+    Manages loading, caching, and creation of Level objects.
     """
+    _instance: Optional['LevelManager'] = None
+    
+    __slots__ = ('current_level_index', 'level_cache', 'level_data', 'max_level_index')
 
-    def __init__(self, json_path: str) -> None:
+    def __init__(self, json_path: str = Settings.LEVEL_DATA_PATH) -> None:
         """
         Initializes LevelManager and loads level dataset from specified JSON file.
 
@@ -420,6 +502,7 @@ class LevelManager:
         Returns:
             None
         """
+        LevelManager._instance = self
         self.current_level_index: int = Settings.START_LEVEL_INDEX
         self.level_cache: Dict[int, Level] = {}
         path: Path = Path(json_path)
@@ -436,8 +519,7 @@ class LevelManager:
 
     def get_level(self, index: int) -> Level:
         """
-        Retrieves a Level object by index, using memory caching to avoid re-parsing assets.
-        Clamps index to max_level_index if out of bounds to prevent fallback to level 0.
+        Retrieves a Level object by index.
 
         Args:
             index (int): 0-indexed level identifier.
@@ -466,11 +548,14 @@ class LevelManager:
         ramps: List[Ramp] = [PlatformFactory.create_ramp(r_data) for r_data in data.get("ramps", [])]
         coins: List[Coin] = [PlatformFactory.create_coin(c_data, level_index=index, coin_index=i) for i, c_data in enumerate(data.get("coins", []))]
 
-        is_blizzard: bool = data.get("is_blizzard_level", False)
-        is_ice: bool = data.get("is_ice_level", False)
-
-        level_obj: Level = Level(bg_path, platforms, ramps, coins, is_blizzard, is_ice)
+        is_last: bool = (index == self.max_level_index)
+ 
+        level_obj: Level = Level(
+            bg_path, platforms, ramps, coins,
+            level_index=index, is_last_level=is_last
+        )
         self.level_cache[index] = level_obj
+        
         return level_obj
 
     def get_current_level(self) -> Level:
@@ -484,3 +569,18 @@ class LevelManager:
             Level: Currently active Level object based on current_level_index.
         """
         return self.get_level(self.current_level_index)
+
+    @classmethod
+    def get_instance(cls, json_path: str = Settings.LEVEL_DATA_PATH) -> 'LevelManager':
+        """
+        Retrieves or creates the singleton instance of LevelManager.
+
+        Args:
+            json_path (str): File system path to the levels JSON configuration file.
+
+        Returns:
+            LevelManager: The singleton instance.
+        """
+        if cls._instance is None:
+            cls._instance = LevelManager(json_path)
+        return cls._instance
